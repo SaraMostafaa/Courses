@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "49976187394",
+    "project_id": "courses-baad4",
+    "storage_bucket": "courses-baad4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49976187394:android:b99e5a990a284818c5651b",
+        "android_client_info": {
+          "package_name": "com.hugatech.courses"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49976187394-4uj5gqquj4h7sl7cpardhqafs9fdul7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyzjz8kSiPn03V5gfsnGO5GMAZFo1i9Xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49976187394-4uj5gqquj4h7sl7cpardhqafs9fdul7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
