@@ -14,14 +14,13 @@ import 'intl/messages_all.dart';
 
 class S {
   static bool isRTL = false;
-
   S();
 
   static S? _current;
+
   static S get current {
     assert(_current != null,
         'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
-
     return _current!;
   }
 
@@ -36,6 +35,7 @@ class S {
       Intl.defaultLocale = localeName;
       final instance = S();
       S._current = instance;
+
       if (locale.languageCode == "ar") {
         S.isRTL = true;
       } else {
@@ -66,6 +66,26 @@ class S {
       args: [],
     );
   }
+
+  /// `salary`
+  String get salary {
+    return Intl.message(
+      'salary',
+      name: 'salary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `age`
+  String get age {
+    return Intl.message(
+      'age',
+      name: 'age',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -80,7 +100,6 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   isRTL() {
     return S.isRTL;
   }

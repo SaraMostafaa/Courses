@@ -17,7 +17,7 @@ class CoursesList extends StatelessWidget {
         child: courses.items.isEmpty
             ? Column(
                 children: const <Widget>[
-                  Text("no transactions"),
+                  Text("no courses"),
                 ],
               )
             : ListView.builder(
@@ -27,10 +27,10 @@ class CoursesList extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           child: Text(
-                            '\$ ${courses.items[index].totalHours} ',
+                            ' ${courses.items[index].totalHours} hour',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 14,
                               color: Colors.purple,
                             ),
                           ),

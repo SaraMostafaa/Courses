@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           primarySwatch: Colors.blueGrey,
           backgroundColor: Colors.blueAccent,
-          accentColor: Colors.deepPurple,
+          accentColor: Colors.blue[300],
           accentColorBrightness: Brightness.dark,
           buttonTheme: ButtonTheme.of(context).copyWith(
               buttonColor: Colors.blueGrey,

@@ -19,12 +19,13 @@ import '../models/employee.dart';
 class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
+  List<dynamic> employees = [];
+  bool isCourses = false;
 }
 
 class _HomeState extends State<Home> {
   final LocalStorage storage = new LocalStorage('coursesList');
   AllCourses courses = new AllCourses();
-  List<Employee> employees = [];
 
   void addNewCourse(String title, int totalHours, String syllabus) {
     final newCourse = Courses(
@@ -55,25 +56,45 @@ class _HomeState extends State<Home> {
         });
   }
 
-  List<Employee> parseProducts(String responseBody) {
-    final parsed = json.decode(responseBody);
-    return parsed.map<Employee>((json) => Employee.fromJson(json)).toList();
-  }
-
-  Future<List<Employee>> fetchProducts() async {
+  fetchProducts() async {
     final response = await http
         .get(Uri.parse('https://dummy.restapiexample.com/api/v1/employees'));
+    final jsonBody = jsonDecode(response.body)["data"] as List;
+    var temp = [];
+    jsonEncode(jsonBody);
+    jsonBody.forEach((element) {
+      setState(() {
+        widget.employees.add(element);
+      });
+    });
+  }
 
-    final jsonBody = jsonDecode(response.body) as EmployeesResponse;
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
 
-    print(jsonBody);
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Sorry"),
+      content:
+          Text("You can't add an employee at the moment, try to add courses."),
+      actions: [
+        okButton,
+      ],
+    );
 
-    if (response.statusCode == 200) {
-      return parseProducts(response.body);
-    } else {
-      print('Unable to fetch products from the REST API');
-      throw Exception("cant");
-    }
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -85,7 +106,8 @@ class _HomeState extends State<Home> {
         return Directionality(
             child: Scaffold(
               appBar: AppBar(
-                title: Text(delegate.pageTitle),
+                title:
+                    Text(widget.isCourses ? delegate.pageTitle : "Employees"),
                 actions: [
                   DropdownButton(
                     icon: Icon(Icons.more_vert,
@@ -96,18 +118,55 @@ class _HomeState extends State<Home> {
                           child: Row(
                             // ignore: prefer_const_literals_to_create_immutables
                             children: <Widget>[
-                              Icon(Icons.exit_to_app),
+                              Text("🇦🇪"),
+                              SizedBox(width: 8),
+                              Text("العربية")
+                            ],
+                          ),
+                        ),
+                        value: "ar",
+                      ),
+                      DropdownMenuItem(
+                        child: Container(
+                            child: Row(
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: <Widget>[
+                              Text("🇺🇸"),
+                              SizedBox(width: 8),
+                              Text("English")
+                            ])),
+                        value: "en",
+                      ),
+                      DropdownMenuItem(
+                        child: Container(
+                          child: Row(
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: <Widget>[
+                              Icon(
+                                Icons.exit_to_app,
+                                color: Theme.of(context).primaryColor,
+                              ),
                               SizedBox(width: 8),
                               Text("Logout")
                             ],
                           ),
                         ),
                         value: "logout",
-                      )
+                      ),
                     ],
                     onChanged: (itemIdentifier) {
                       if (itemIdentifier == "logout") {
                         FirebaseAuth.instance.signOut();
+                      } else if (itemIdentifier == " ar") {
+                        setState(() {
+                          S.load(Locale("ar"));
+                          S.isRTL = false;
+                        });
+                      } else if (itemIdentifier == "en") {
+                        setState(() {
+                          S.load(Locale("en"));
+                          S.isRTL = false;
+                        });
                       }
                     },
                   )
@@ -120,33 +179,22 @@ class _HomeState extends State<Home> {
                       alignment: MainAxisAlignment.center,
                       children: [
                         MaterialButton(
-                          textColor: S.isRTL
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).primaryColorLight,
-                          onPressed: () {
-                            setState(() {
-                              S.load(Locale("ar"));
-                              S.isRTL = true;
-                            });
-                          },
-                          child: Text("العربية"),
-                        ),
-                        MaterialButton(
                           textColor: !S.isRTL
                               ? Theme.of(context).primaryColor
                               : Theme.of(context).primaryColorLight,
                           onPressed: () {
                             setState(() {
-                              S.load(Locale("en"));
-                              S.isRTL = false;
+                              widget.isCourses = !widget.isCourses;
                             });
                           },
-                          child: Text("English"),
+                          child: Text(widget.isCourses
+                              ? "Go to Employees"
+                              : "Go to Courses"),
                         ),
                       ],
-                    )
-                    // CoursesList(courses),
-                    //EmployeesList(employees),
+                    ),
+                    if (widget.isCourses) CoursesList(courses),
+                    if (!widget.isCourses) EmployeesList(widget.employees),
                   ],
                   crossAxisAlignment: CrossAxisAlignment.center,
                 ),
@@ -156,7 +204,9 @@ class _HomeState extends State<Home> {
               floatingActionButton: FloatingActionButton(
                 onPressed: null,
                 child: IconButton(
-                    onPressed: () => showAddCourseBottomSheeet(context),
+                    onPressed: () => widget.isCourses
+                        ? showAddCourseBottomSheeet(context)
+                        : showAlertDialog(context),
                     icon: Icon(Icons.add)),
               ),
             ),
