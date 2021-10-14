@@ -1,5 +1,15 @@
 {
     "pageTitle": "Courses",
     "salary": "salary",
-    "age": "age"
+    "age": "age",
+    "logout": "Logout",
+    "courses": "Courses",
+    "employees": "Employees",
+    "noEmps": "No Employees Found.",
+    "noCourses": "No Courses Found.",
+    "msg": "You can't add an employee at the moment, try to add courses.",
+    "sorry": "Sorry",
+    "title": " Title",
+    "syllabus": "Syllabus",
+    "totalHours": "Total hours"
 }

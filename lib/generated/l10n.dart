@@ -41,7 +41,6 @@ class S {
       } else {
         S.isRTL = false;
       }
-      print(S.isRTL);
       return instance;
     });
   }
@@ -82,6 +81,106 @@ class S {
     return Intl.message(
       'age',
       name: 'age',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Courses`
+  String get courses {
+    return Intl.message(
+      'Courses',
+      name: 'courses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employees`
+  String get employees {
+    return Intl.message(
+      'Employees',
+      name: 'employees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Employees Found.`
+  String get noEmps {
+    return Intl.message(
+      'No Employees Found.',
+      name: 'noEmps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Courses Found.`
+  String get noCourses {
+    return Intl.message(
+      'No Courses Found.',
+      name: 'noCourses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can't add an employee at the moment, try to add courses.`
+  String get msg {
+    return Intl.message(
+      'You can\'t add an employee at the moment, try to add courses.',
+      name: 'msg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry`
+  String get sorry {
+    return Intl.message(
+      'Sorry',
+      name: 'sorry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Title`
+  String get title {
+    return Intl.message(
+      ' Title',
+      name: 'title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Syllabus`
+  String get syllabus {
+    return Intl.message(
+      'Syllabus',
+      name: 'syllabus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total hours`
+  String get totalHours {
+    return Intl.message(
+      'Total hours',
+      name: 'totalHours',
       desc: '',
       args: [],
     );

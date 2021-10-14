@@ -80,9 +80,8 @@ class _HomeState extends State<Home> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Sorry"),
-      content:
-          Text("You can't add an employee at the moment, try to add courses."),
+      title: Text(S.of(context).sorry),
+      content: Text(S.of(context).msg),
       actions: [
         okButton,
       ],
@@ -147,7 +146,7 @@ class _HomeState extends State<Home> {
                                 color: Theme.of(context).primaryColor,
                               ),
                               SizedBox(width: 8),
-                              Text("Logout")
+                              Text(S.of(context).logout)
                             ],
                           ),
                         ),
@@ -157,7 +156,7 @@ class _HomeState extends State<Home> {
                     onChanged: (itemIdentifier) {
                       if (itemIdentifier == "logout") {
                         FirebaseAuth.instance.signOut();
-                      } else if (itemIdentifier == " ar") {
+                      } else if (itemIdentifier == "ar") {
                         setState(() {
                           S.load(Locale("ar"));
                           S.isRTL = false;

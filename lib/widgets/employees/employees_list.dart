@@ -28,8 +28,8 @@ class _EmployeesListState extends State<EmployeesList> {
               height: 460,
               child: widget.recivedEmployees.isEmpty
                   ? Column(
-                      children: const <Widget>[
-                        Text("no employees"),
+                      children: <Widget>[
+                        Text(S.of(context).noEmps),
                       ],
                     )
                   : ListView.builder(

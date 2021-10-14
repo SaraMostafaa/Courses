@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, file_names
 
+import 'package:courses/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/courses_list.dart';
@@ -16,8 +17,8 @@ class CoursesList extends StatelessWidget {
         height: 460,
         child: courses.items.isEmpty
             ? Column(
-                children: const <Widget>[
-                  Text("no courses"),
+                children: <Widget>[
+                  Text(S.of(context).noCourses),
                 ],
               )
             : ListView.builder(

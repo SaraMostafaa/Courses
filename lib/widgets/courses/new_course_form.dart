@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:courses/generated/l10n.dart';
 import "package:flutter/material.dart";
 import 'package:localstorage/localstorage.dart';
 
@@ -36,17 +37,18 @@ class _NewCourseState extends State<NewCourse> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               TextField(
-                decoration: InputDecoration(labelText: "Title"),
+                decoration: InputDecoration(labelText: S.of(context).title),
                 controller: titleController,
                 onSubmitted: (_) => {submitData()},
               ),
               TextField(
-                decoration: InputDecoration(labelText: "Syllabus"),
+                decoration: InputDecoration(labelText: S.of(context).syllabus),
                 controller: syllabusController,
                 onSubmitted: (_) => {submitData()},
               ),
               TextField(
-                decoration: InputDecoration(labelText: "Total Hours"),
+                decoration:
+                    InputDecoration(labelText: S.of(context).totalHours),
                 controller: totalHoursController,
                 keyboardType: TextInputType.number,
                 onSubmitted: (_) => {submitData()},
