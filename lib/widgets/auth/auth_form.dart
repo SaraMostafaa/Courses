@@ -1,4 +1,6 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_field
+
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../auth/upload_form.dart';
@@ -8,7 +10,7 @@ class AuthForm extends StatefulWidget {
   bool isLoading = false;
 
   final void Function(String email, String password, String userName,
-      bool isLogin, BuildContext context) submitInfo;
+      File image, bool isLogin, BuildContext context) submitInfo;
   @override
   _AuthFormState createState() => _AuthFormState();
 }
@@ -19,13 +21,26 @@ class _AuthFormState extends State<AuthForm> {
   String _email = "";
   String _userName = "";
   String _password = "";
+  File? _userImage;
+
+  void pickedImage(File image) {
+    _userImage = image;
+  }
 
   void _submit() {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
+    if (_userImage == null && !isLogin) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text("please pick image"),
+        backgroundColor: Theme.of(context).errorColor,
+      ));
+      return;
+    }
     if (isValid) {
       _formKey.currentState!.save();
-      widget.submitInfo(_email, _password, _userName, isLogin, context);
+      widget.submitInfo(
+          _email, _password, _userName, _userImage!, isLogin, context);
     }
   }
 
@@ -40,7 +55,7 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (!isLogin) UserImagePicker(),
+                if (!isLogin) UserImagePicker(pickedImage),
                 TextFormField(
                   key: ValueKey("email"),
                   validator: (value) {

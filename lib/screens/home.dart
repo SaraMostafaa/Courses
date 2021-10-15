@@ -15,6 +15,7 @@ import "package:firebase_auth/firebase_auth.dart";
 import "../widgets/courses/new_course_form.dart";
 import '../models/courses_list.dart';
 import '../models/employee.dart';
+import "../widgets/user/user_card.dart";
 
 class Home extends StatefulWidget {
   @override
@@ -174,6 +175,7 @@ class _HomeState extends State<Home> {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
+                    UserCard(),
                     ButtonBar(
                       alignment: MainAxisAlignment.center,
                       children: [
