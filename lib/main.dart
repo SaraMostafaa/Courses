@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
       onGenerateTitle: (BuildContext context) => S.of(context).pageTitle,
       title: 'Flutter Demo',
       theme: ThemeData(
+          fontFamily: "QuickSand",
           primarySwatch: Colors.blueGrey,
           backgroundColor: Colors.blueAccent,
           accentColor: Colors.blue[300],

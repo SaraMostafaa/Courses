@@ -52,11 +52,20 @@ class _UserCardState extends State<UserCard> {
             ),
             child: Row(
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(_avatar!),
-                ),
+                if (_avatar != null)
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(_avatar!),
+                  ),
                 SizedBox(width: 8),
-                Text('Welcome ${_userName} '),
+                if (_userName != null)
+                  Text(
+                    'Welcome ${_userName} ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
               ],
             ),
           );

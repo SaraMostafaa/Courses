@@ -106,8 +106,7 @@ class _HomeState extends State<Home> {
         return Directionality(
             child: Scaffold(
               appBar: AppBar(
-                title:
-                    Text(widget.isCourses ? delegate.pageTitle : "Employees"),
+                title: Text(delegate.pageTitle),
                 actions: [
                   DropdownButton(
                     icon: Icon(Icons.more_vert,
@@ -176,26 +175,7 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     UserCard(),
-                    ButtonBar(
-                      alignment: MainAxisAlignment.center,
-                      children: [
-                        MaterialButton(
-                          textColor: !S.isRTL
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).primaryColorLight,
-                          onPressed: () {
-                            setState(() {
-                              widget.isCourses = !widget.isCourses;
-                            });
-                          },
-                          child: Text(widget.isCourses
-                              ? "Go to Employees"
-                              : "Go to Courses"),
-                        ),
-                      ],
-                    ),
-                    if (widget.isCourses) CoursesList(courses),
-                    if (!widget.isCourses) EmployeesList(widget.employees),
+                    CoursesList(courses),
                   ],
                   crossAxisAlignment: CrossAxisAlignment.center,
                 ),
