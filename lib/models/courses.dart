@@ -5,7 +5,6 @@ class Courses {
   String? title;
   String? syllabus;
   double? amount;
-  DateTime date = DateTime.now();
   DateTime startDate = DateTime.now();
   int? totalHours;
 
@@ -13,7 +12,7 @@ class Courses {
     this.id,
     this.title,
     required this.syllabus,
-    required this.date,
+    required this.amount,
     required this.totalHours,
     required this.startDate,
   });
@@ -24,7 +23,7 @@ class Courses {
     m['id'] = id;
     m['title'] = title;
     m['syllabus'] = syllabus;
-    m['date'] = json.encode(date.toIso8601String());
+    m['amount'] = amount;
     m['totalHours'] = totalHours;
     m['startDate'] = json.encode(startDate.toIso8601String());
 
@@ -34,7 +33,7 @@ class Courses {
   fromJson() {
     return Courses(
         syllabus: syllabus,
-        date: date,
+        amount: amount,
         totalHours: totalHours,
         startDate: startDate);
   }

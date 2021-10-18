@@ -15,69 +15,62 @@ class EmployeesList extends StatefulWidget {
 }
 
 class _EmployeesListState extends State<EmployeesList> {
-  fetchEmployees() async {
-    print("here is the other side");
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: fetchEmployees(),
-        builder: (context, userSnapshot) {
-          return Container(
-              height: 460,
-              child: widget.recivedEmployees.isEmpty
-                  ? Column(
-                      children: <Widget>[
-                        Text(S.of(context).noEmps),
-                      ],
-                    )
-                  : ListView.builder(
-                      itemBuilder: (ctx, index) {
-                        return Card(
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 200,
-                                child: Text(
-                                  widget.recivedEmployees[index]
-                                      ["employee_name"],
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                decoration: BoxDecoration(),
-                                padding: const EdgeInsets.all(10),
-                                margin: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 15),
+    return FutureBuilder(builder: (context, userSnapshot) {
+      return Container(
+          height: 460,
+          child: widget.recivedEmployees.isEmpty
+              ? Column(
+                  children: <Widget>[
+                    Text(S.of(context).noEmps),
+                  ],
+                )
+              : ListView.builder(
+                  itemBuilder: (ctx, index) {
+                    return Card(
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 200,
+                            child: Text(
+                              widget.recivedEmployees[index]["employee_name"],
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    '${S.of(context).salary} \$ ${widget.recivedEmployees[index]["employee_salary"].toString()}',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).accentColor,
-                                    ),
-                                  ),
-                                  Text(
-                                    '${S.of(context).age}  ${widget.recivedEmployees[index]["employee_age"].toString()}',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                            ),
+                            decoration: BoxDecoration(),
+                            padding: const EdgeInsets.all(10),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                '${S.of(context).salary} \$ ${widget.recivedEmployees[index]["employee_salary"].toString()}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).accentColor,
+                                ),
+                              ),
+                              Text(
+                                '${S.of(context).age}  ${widget.recivedEmployees[index]["employee_age"].toString()}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
-                        );
-                      },
-                      itemCount: widget.recivedEmployees.length,
-                    ));
-        });
+                        ],
+                      ),
+                    );
+                  },
+                  itemCount: widget.recivedEmployees.length,
+                ));
+    });
   }
 }

@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new, unused_local_variable
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courses/generated/l10n.dart';
 import 'package:courses/models/courses.dart';
 import 'package:courses/widgets/courses/courses_list.dart';
+import 'package:dio/dio.dart';
 import '../models/employees_response.dart';
 import 'package:courses/widgets/employees/employees_list.dart';
 import 'package:localstorage/localstorage.dart';
@@ -21,19 +23,21 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
   List<dynamic> employees = [];
+
   bool isCourses = false;
 }
 
 class _HomeState extends State<Home> {
   final LocalStorage storage = new LocalStorage('coursesList');
   AllCourses courses = new AllCourses();
-
-  void addNewCourse(String title, int totalHours, String syllabus) {
+  List<Courses> courseList = [];
+  void addNewCourse(
+      String title, int totalHours, String syllabus, double amount) {
     final newCourse = Courses(
         id: DateTime.now().toString(),
         syllabus: syllabus,
         title: title,
-        date: DateTime.now(),
+        amount: amount,
         startDate: DateTime.now(),
         totalHours: totalHours);
     setState(() {
@@ -58,14 +62,22 @@ class _HomeState extends State<Home> {
   }
 
   fetchProducts() async {
-    final response = await http
-        .get(Uri.parse('https://dummy.restapiexample.com/api/v1/employees'));
-    final jsonBody = jsonDecode(response.body)["data"] as List;
-    var temp = [];
-    jsonEncode(jsonBody);
-    jsonBody.forEach((element) {
+    final response = FirebaseFirestore.instance
+        .collection('courses')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      List<Courses> temp = [];
+      querySnapshot.docs.forEach((doc) {
+        temp.add(Courses(
+            title: doc["title"],
+            amount: double.parse(doc["amount"].toString()),
+            startDate: DateTime.now(),
+            syllabus: doc["syllabus"],
+            totalHours: int.parse(doc["hours"].toString()),
+            id: "userId"));
+      });
       setState(() {
-        widget.employees.add(element);
+        courseList = temp;
       });
     });
   }
@@ -175,7 +187,7 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     UserCard(),
-                    CoursesList(courses),
+                    CoursesList(courseList),
                   ],
                   crossAxisAlignment: CrossAxisAlignment.center,
                 ),
@@ -184,11 +196,13 @@ class _HomeState extends State<Home> {
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
                 onPressed: null,
+                backgroundColor: Theme.of(context).primaryColor,
                 child: IconButton(
-                    onPressed: () => widget.isCourses
-                        ? showAddCourseBottomSheeet(context)
-                        : showAlertDialog(context),
-                    icon: Icon(Icons.add)),
+                    onPressed: () => showAddCourseBottomSheeet(context),
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    )),
               ),
             ),
             textDirection:

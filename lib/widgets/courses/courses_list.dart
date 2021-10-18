@@ -1,13 +1,12 @@
 // ignore_for_file: use_key_in_widget_constructors, file_names
 
-import 'package:courses/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/courses_list.dart';
 import "../../models/courses.dart";
 
 class CoursesList extends StatelessWidget {
-  AllCourses courses = new AllCourses();
+  List<Courses> courses = [];
 
   CoursesList(this.courses);
 
@@ -15,10 +14,10 @@ class CoursesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 460,
-        child: courses.items.isEmpty
+        child: courses.isEmpty
             ? Column(
-                children: <Widget>[
-                  Text(S.of(context).noCourses),
+                children: const <Widget>[
+                  Text("no courses"),
                 ],
               )
             : ListView.builder(
@@ -28,10 +27,10 @@ class CoursesList extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           child: Text(
-                            ' ${courses.items[index].totalHours} hour',
+                            ' ${courses[index].amount.toString()} hour',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 18,
                               color: Colors.purple,
                             ),
                           ),
@@ -48,15 +47,14 @@ class CoursesList extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              courses.items[index].title.toString(),
+                              courses[index].title.toString(),
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              DateFormat("yyyy-MM-dd")
-                                  .format(courses.items[index].date),
+                              '${courses[index].totalHours.toString()} hour',
                               style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -68,7 +66,7 @@ class CoursesList extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: courses.items.length,
+                itemCount: courses.length,
               ));
   }
 }

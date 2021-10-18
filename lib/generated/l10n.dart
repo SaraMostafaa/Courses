@@ -13,7 +13,6 @@ import 'intl/messages_all.dart';
 // ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
 
 class S {
-  static bool isRTL = false;
   S();
 
   static S? _current;
@@ -36,11 +35,6 @@ class S {
       final instance = S();
       S._current = instance;
 
-      if (locale.languageCode == "ar") {
-        S.isRTL = true;
-      } else {
-        S.isRTL = false;
-      }
       return instance;
     });
   }
@@ -199,10 +193,6 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-  isRTL() {
-    return S.isRTL;
-  }
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
   @override

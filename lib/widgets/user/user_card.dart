@@ -16,7 +16,6 @@ class _UserCardState extends State<UserCard> {
   String? _avatar;
   Future<void> _getUserName() async {
     var user = await FirebaseAuth.instance.currentUser!;
-    print(user.uid);
     var userData = await FirebaseFirestore.instance
         .collection("users")
         .doc(user.uid)
