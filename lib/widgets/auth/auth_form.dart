@@ -21,7 +21,8 @@ class _AuthFormState extends State<AuthForm> {
   String _email = "";
   String _userName = "";
   String _password = "";
-  File? _userImage;
+  File? _userImage = new File(
+      "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101028.jpg");
 
   void pickedImage(File image) {
     _userImage = image;

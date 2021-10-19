@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courses/generated/l10n.dart';
 import 'package:courses/models/courses.dart';
 import 'package:courses/widgets/courses/courses_list.dart';
+import 'package:courses/widgets/layout/nav_drawer.dart';
 import 'package:dio/dio.dart';
 import '../models/employees_response.dart';
-import 'package:courses/widgets/employees/employees_list.dart';
 import 'package:localstorage/localstorage.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -112,102 +112,105 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final delegate = S.of(context);
-    return FutureBuilder(
-      future: fetchProducts(),
-      builder: (context, userSnapshot) {
-        return Directionality(
-            child: Scaffold(
-              appBar: AppBar(
-                title: Text(delegate.pageTitle),
-                actions: [
-                  DropdownButton(
-                    icon: Icon(Icons.more_vert,
-                        color: Theme.of(context).primaryIconTheme.color),
-                    items: [
-                      DropdownMenuItem(
-                        child: Container(
-                          child: Row(
-                            // ignore: prefer_const_literals_to_create_immutables
-                            children: <Widget>[
-                              Text("🇦🇪"),
-                              SizedBox(width: 8),
-                              Text("العربية")
-                            ],
-                          ),
-                        ),
-                        value: "ar",
-                      ),
-                      DropdownMenuItem(
-                        child: Container(
+    return Scaffold(
+      body: FutureBuilder(
+        future: fetchProducts(),
+        builder: (context, userSnapshot) {
+          return Directionality(
+              child: Scaffold(
+                drawer: NavDrawer(),
+                appBar: AppBar(
+                  title: Text(delegate.pageTitle),
+                  actions: [
+                    DropdownButton(
+                      icon: Icon(Icons.more_vert,
+                          color: Theme.of(context).primaryIconTheme.color),
+                      items: [
+                        DropdownMenuItem(
+                          child: Container(
                             child: Row(
-                                // ignore: prefer_const_literals_to_create_immutables
-                                children: <Widget>[
-                              Text("🇺🇸"),
-                              SizedBox(width: 8),
-                              Text("English")
-                            ])),
-                        value: "en",
-                      ),
-                      DropdownMenuItem(
-                        child: Container(
-                          child: Row(
-                            // ignore: prefer_const_literals_to_create_immutables
-                            children: <Widget>[
-                              Icon(
-                                Icons.exit_to_app,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              SizedBox(width: 8),
-                              Text(S.of(context).logout)
-                            ],
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: <Widget>[
+                                Text("🇦🇪"),
+                                SizedBox(width: 8),
+                                Text("العربية")
+                              ],
+                            ),
                           ),
+                          value: "ar",
                         ),
-                        value: "logout",
-                      ),
-                    ],
-                    onChanged: (itemIdentifier) {
-                      if (itemIdentifier == "logout") {
-                        FirebaseAuth.instance.signOut();
-                      } else if (itemIdentifier == "ar") {
-                        setState(() {
-                          S.load(Locale("ar"));
-                          S.isRTL = false;
-                        });
-                      } else if (itemIdentifier == "en") {
-                        setState(() {
-                          S.load(Locale("en"));
-                          S.isRTL = false;
-                        });
-                      }
-                    },
-                  )
-                ],
-              ),
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    UserCard(),
-                    CoursesList(courseList),
+                        DropdownMenuItem(
+                          child: Container(
+                              child: Row(
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: <Widget>[
+                                Text("🇺🇸"),
+                                SizedBox(width: 8),
+                                Text("English")
+                              ])),
+                          value: "en",
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            child: Row(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: <Widget>[
+                                Icon(
+                                  Icons.exit_to_app,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                SizedBox(width: 8),
+                                Text(S.of(context).logout)
+                              ],
+                            ),
+                          ),
+                          value: "logout",
+                        ),
+                      ],
+                      onChanged: (itemIdentifier) {
+                        if (itemIdentifier == "logout") {
+                          FirebaseAuth.instance.signOut();
+                        } else if (itemIdentifier == "ar") {
+                          setState(() {
+                            S.load(Locale("ar"));
+                            S.isRTL = false;
+                          });
+                        } else if (itemIdentifier == "en") {
+                          setState(() {
+                            S.load(Locale("en"));
+                            S.isRTL = false;
+                          });
+                        }
+                      },
+                    )
                   ],
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                ),
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      UserCard(),
+                      CoursesList(courseList),
+                    ],
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                  ),
+                ),
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerFloat,
+                floatingActionButton: FloatingActionButton(
+                  onPressed: null,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: IconButton(
+                      onPressed: () => showAddCourseBottomSheeet(context),
+                      icon: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      )),
                 ),
               ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
-              floatingActionButton: FloatingActionButton(
-                onPressed: null,
-                backgroundColor: Theme.of(context).primaryColor,
-                child: IconButton(
-                    onPressed: () => showAddCourseBottomSheeet(context),
-                    icon: Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    )),
-              ),
-            ),
-            textDirection:
-                S.isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr);
-      },
+              textDirection:
+                  S.isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr);
+        },
+      ),
     );
   }
 }

@@ -27,7 +27,7 @@ class CoursesList extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           child: Text(
-                            ' ${courses[index].amount.toString()} hour',
+                            ' \$ ${courses[index].amount.toString()} ',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,

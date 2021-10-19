@@ -35,12 +35,12 @@ class _NewCourseState extends State<NewCourse> {
     var user = await FirebaseAuth.instance.currentUser!;
 
     FirebaseFirestore.instance.collection("courses").add({
-      "title": enteredTitle,
+      "name": enteredTitle,
       "syllabus": enteredSyllbus,
-      "hours": enteredTotalHours,
-      "start": DateTime.now(),
+      "totalHours": enteredTotalHours,
+      "startDate": DateTime.now(),
       "amount": enteredAmount,
-      "userId": user.uid
+      "instructorId": user.uid
     });
   }
 
