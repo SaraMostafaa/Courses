@@ -71,6 +71,7 @@ flutter:
     - assets/images/splash.jpg
     - assets/images/dummy-course.png
     - assets/images/instructor-icon.png
+    - assets/images/drawer_logo.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

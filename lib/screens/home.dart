@@ -82,33 +82,6 @@ class _HomeState extends State<Home> {
     });
   }
 
-  showAlertDialog(BuildContext context) {
-    // set up the button
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text(S.of(context).sorry),
-      content: Text(S.of(context).msg),
-      actions: [
-        okButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final delegate = S.of(context);
@@ -121,69 +94,6 @@ class _HomeState extends State<Home> {
                 drawer: NavDrawer(),
                 appBar: AppBar(
                   title: Text(delegate.pageTitle),
-                  actions: [
-                    DropdownButton(
-                      icon: Icon(Icons.more_vert,
-                          color: Theme.of(context).primaryIconTheme.color),
-                      items: [
-                        DropdownMenuItem(
-                          child: Container(
-                            child: Row(
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: <Widget>[
-                                Text("🇦🇪"),
-                                SizedBox(width: 8),
-                                Text("العربية")
-                              ],
-                            ),
-                          ),
-                          value: "ar",
-                        ),
-                        DropdownMenuItem(
-                          child: Container(
-                              child: Row(
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  children: <Widget>[
-                                Text("🇺🇸"),
-                                SizedBox(width: 8),
-                                Text("English")
-                              ])),
-                          value: "en",
-                        ),
-                        DropdownMenuItem(
-                          child: Container(
-                            child: Row(
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: <Widget>[
-                                Icon(
-                                  Icons.exit_to_app,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                SizedBox(width: 8),
-                                Text(S.of(context).logout)
-                              ],
-                            ),
-                          ),
-                          value: "logout",
-                        ),
-                      ],
-                      onChanged: (itemIdentifier) {
-                        if (itemIdentifier == "logout") {
-                          FirebaseAuth.instance.signOut();
-                        } else if (itemIdentifier == "ar") {
-                          setState(() {
-                            S.load(Locale("ar"));
-                            S.isRTL = false;
-                          });
-                        } else if (itemIdentifier == "en") {
-                          setState(() {
-                            S.load(Locale("en"));
-                            S.isRTL = false;
-                          });
-                        }
-                      },
-                    )
-                  ],
                 ),
                 body: SingleChildScrollView(
                   child: Column(

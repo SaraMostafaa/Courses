@@ -25,18 +25,17 @@ class NavDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Text(
-              'Side menu',
+              '',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             decoration: BoxDecoration(
-              color: Colors.green,
-              // image: DecorationImage(
-              //     fit: BoxFit.fill,
-              //     image: AssetImage('assets/images/cover.jpg'))
-            ),
+                color: Colors.white,
+                image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: AssetImage('assets/images/drawer_logo.png'))),
           ),
           ListTile(
-              leading: Icon(Icons.input),
+              leading: Icon(Icons.home),
               title: Text('Home'),
               onTap: () => {
                     Navigator.of(context).push(

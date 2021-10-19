@@ -34,18 +34,18 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(
           fontFamily: "QuickSand",
-          primarySwatch: Colors.blueGrey,
+          primarySwatch: Colors.blue,
           backgroundColor: Colors.blueAccent,
           //accentColor: Colors.blue[300],
           accentColorBrightness: Brightness.dark,
-          accentColor: Color(0xFFFF5000),
+          accentColor: Color(0xFFFFB800),
           buttonTheme: ButtonTheme.of(context).copyWith(
-              buttonColor: Colors.blueGrey,
+              buttonColor: Color(0xFF203378),
               textTheme: ButtonTextTheme.primary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               )),
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
               .copyWith(secondary: Colors.blue[300])),
       initialRoute: "/",
       home: Directionality(
