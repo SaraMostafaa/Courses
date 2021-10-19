@@ -51,10 +51,14 @@ class _HomeState extends State<Home> {
 
   void showAddCourseBottomSheeet(BuildContext ctx) {
     showModalBottomSheet(
+        isScrollControlled: true,
         context: ctx,
         builder: (_) {
           return GestureDetector(
-            child: NewCourse(addNewCourse),
+            child: Padding(
+              padding: MediaQuery.of(context).viewInsets,
+              child: NewCourse(addNewCourse),
+            ),
             onTap: () {},
             behavior: HitTestBehavior.opaque,
           );
@@ -86,6 +90,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final delegate = S.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: FutureBuilder(
         future: fetchProducts(),
         builder: (context, userSnapshot) {

@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, file_names
+// ignore_for_file: use_key_in_widget_constructors, file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -26,17 +26,24 @@ class CoursesList extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          child: Text(
-                            ' \$ ${courses[index].amount.toString()} ',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.purple,
-                            ),
-                          ),
+                          child: Image(
+                              image: AssetImage(
+                                "assets/images/dummy-course.png",
+                              ),
+                              width: 100,
+                              height: 70,
+                              fit: BoxFit.contain),
+                          // Text(
+                          //   ' \$ ${courses[index].amount.toString()} ',
+                          //   style: const TextStyle(
+                          //     fontWeight: FontWeight.bold,
+                          //     fontSize: 18,
+                          //     color: Colors.purple,
+                          //   ),
+                          // ),
                           decoration: BoxDecoration(
                               border: Border.all(
-                            color: Colors.purple,
+                            color: Colors.white,
                             width: 2,
                           )),
                           padding: const EdgeInsets.all(10),
@@ -45,6 +52,7 @@ class CoursesList extends StatelessWidget {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               courses[index].title.toString(),
@@ -61,6 +69,24 @@ class CoursesList extends StatelessWidget {
                                   color: Colors.grey),
                             ),
                           ],
+                        ),
+                        Container(
+                          child: Text(
+                            ' \$ ${courses[index].amount.toString()} ',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.purple,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            color: Theme.of(context).accentColor,
+                            width: 1,
+                          )),
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 35),
                         ),
                       ],
                     ),

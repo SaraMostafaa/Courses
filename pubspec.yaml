@@ -44,6 +44,7 @@ dependencies:
   dio: ^4.0.0
   firebase_storage: ^10.0.5
   flutter_settings_screens: ^0.3.0-null-safety
+  datetime_picker_formfield: ^2.0.0
 
 dev_dependencies:
   flutter_test:
