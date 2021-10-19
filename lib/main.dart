@@ -36,8 +36,9 @@ class _MyAppState extends State<MyApp> {
           fontFamily: "QuickSand",
           primarySwatch: Colors.blueGrey,
           backgroundColor: Colors.blueAccent,
-          accentColor: Colors.blue[300],
+          //accentColor: Colors.blue[300],
           accentColorBrightness: Brightness.dark,
+          accentColor: Color(0xFFFF5000),
           buttonTheme: ButtonTheme.of(context).copyWith(
               buttonColor: Colors.blueGrey,
               textTheme: ButtonTextTheme.primary,

@@ -56,6 +56,25 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Row(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    Image(
+                        image: AssetImage(
+                          'assets/images/instructor-icon.png',
+                        ),
+                        width: 100,
+                        height: 70,
+                        fit: BoxFit.fill),
+                    Text(
+                      "Instructor",
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
                 if (!isLogin) UserImagePicker(pickedImage),
                 TextFormField(
                   key: ValueKey("email"),
@@ -104,7 +123,9 @@ class _AuthFormState extends State<AuthForm> {
                 if (!widget.isLoading)
                   RaisedButton(
                     onPressed: _submit,
-                    child: Text(isLogin ? "Login" : "Register"),
+                    child: Text(
+                      isLogin ? "Login" : "Register",
+                    ),
                   ),
                 FlatButton(
                   onPressed: (() {
@@ -115,7 +136,7 @@ class _AuthFormState extends State<AuthForm> {
                   child: Text(
                     isLogin ? "Register Now" : "Already have an account?",
                   ),
-                  textColor: Theme.of(context).primaryColor,
+                  textColor: Theme.of(context).accentColor,
                 )
               ],
             ),
