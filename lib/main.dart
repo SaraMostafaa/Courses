@@ -33,8 +33,9 @@ class _MyAppState extends State<MyApp> {
       onGenerateTitle: (BuildContext context) => S.of(context).pageTitle,
       title: 'Flutter Demo',
       theme: ThemeData(
+          primaryColor: Color.fromRGBO(58, 66, 86, 1.0),
           fontFamily: "QuickSand",
-          primarySwatch: Colors.blue,
+          //primarySwatch: Colors.blue,
           backgroundColor: Colors.blueAccent,
           //accentColor: Colors.blue[300],
           accentColorBrightness: Brightness.dark,

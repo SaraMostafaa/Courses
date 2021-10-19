@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courses/generated/l10n.dart';
 import 'package:courses/models/courses.dart';
 import 'package:courses/widgets/courses/courses_list.dart';
+import 'package:courses/widgets/layout/bottom_navigation.dart';
 import 'package:courses/widgets/layout/nav_drawer.dart';
 import 'package:dio/dio.dart';
 import '../models/employees_response.dart';
@@ -96,14 +97,17 @@ class _HomeState extends State<Home> {
         builder: (context, userSnapshot) {
           return Directionality(
               child: Scaffold(
+                backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
                 drawer: NavDrawer(),
                 appBar: AppBar(
+                  backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
                   title: Text(delegate.pageTitle),
                 ),
+                bottomSheet: BottomNavigation(),
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
-                      UserCard(),
+                      // UserCard(),
                       CoursesList(courseList),
                     ],
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,7 +117,7 @@ class _HomeState extends State<Home> {
                     FloatingActionButtonLocation.centerFloat,
                 floatingActionButton: FloatingActionButton(
                   onPressed: null,
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
                   child: IconButton(
                       onPressed: () => showAddCourseBottomSheeet(context),
                       icon: Icon(

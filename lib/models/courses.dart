@@ -7,6 +7,7 @@ class Courses {
   double? amount;
   DateTime startDate = DateTime.now();
   int? totalHours;
+  String? imageURl;
 
   Courses({
     this.id,
@@ -15,6 +16,7 @@ class Courses {
     required this.amount,
     required this.totalHours,
     required this.startDate,
+    this.imageURl,
   });
 
   toJSONEncodable() {
