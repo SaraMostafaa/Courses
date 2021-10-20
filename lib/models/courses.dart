@@ -2,6 +2,7 @@ import 'dart:convert';
 
 class Courses {
   String? id;
+  String? instructorId;
   String? title;
   String? syllabus;
   double? amount;
@@ -10,16 +11,16 @@ class Courses {
   String? imageURl;
   String description = "";
 
-  Courses({
-    this.id,
-    this.title,
-    required this.syllabus,
-    required this.amount,
-    required this.totalHours,
-    required this.startDate,
-    this.imageURl,
-    required this.description,
-  });
+  Courses(
+      {this.id,
+      this.title,
+      required this.syllabus,
+      required this.amount,
+      required this.totalHours,
+      required this.startDate,
+      this.imageURl,
+      required this.description,
+      this.instructorId});
 
   toJSONEncodable() {
     Map<String, dynamic> m = {};

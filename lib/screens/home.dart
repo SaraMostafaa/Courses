@@ -84,8 +84,9 @@ class _HomeState extends State<Home> {
               startDate: doc["startDate"].toDate(),
               syllabus: doc["syllabus"],
               totalHours: int.parse(doc["totalHours"].toString()),
-              id: doc["instructorId"],
-              description: doc["description"]),
+              id: doc["id"],
+              description: doc["description"],
+              instructorId: doc["instructorId"]),
         );
       });
       setState(() {
@@ -110,7 +111,7 @@ class _HomeState extends State<Home> {
                   backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
                   title: Text(delegate.pageTitle),
                 ),
-                bottomSheet: BottomNavigation(),
+                //bottomSheet: BottomNavigation(),
                 body: SingleChildScrollView(
                   child: Column(
                     children: [

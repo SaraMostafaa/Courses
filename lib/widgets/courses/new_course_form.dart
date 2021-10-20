@@ -65,7 +65,7 @@ class _NewCourseState extends State<NewCourse> {
       "startDate": startDate,
       "amount": enteredAmount,
       "instructorId": user.uid,
-      "courseId": user.uid + DateTime.now().toString(),
+      "id": user.uid + DateTime.now().toString(),
       "image":
           "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg",
       "description": enteredDescription,
