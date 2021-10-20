@@ -6,6 +6,18 @@ class DetailPage extends StatelessWidget {
   DetailPage(this.course);
   @override
   Widget build(BuildContext context) {
+    final coursePrice = Container(
+      padding: const EdgeInsets.all(3.0),
+      decoration: new BoxDecoration(
+          border: new Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(5.0)),
+      child: new Text(
+        // "\$20",
+        '\$ ${course.amount.toString()}',
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+
     final topContentText = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -28,10 +40,10 @@ class DetailPage extends StatelessWidget {
                 child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
                     child: Text(
-                      course.totalHours.toString() + " Hours",
+                      '${course.totalHours.toString()} Hours',
                       style: TextStyle(color: Colors.white),
                     ))),
-            Expanded(flex: 1, child: Text(course.amount.toString() + "\$"))
+            Expanded(flex: 1, child: coursePrice)
           ],
         ),
       ],
@@ -68,17 +80,6 @@ class DetailPage extends StatelessWidget {
           ),
         )
       ],
-    );
-    final coursePrice = Container(
-      padding: const EdgeInsets.all(7.0),
-      decoration: new BoxDecoration(
-          border: new Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(5.0)),
-      child: new Text(
-        // "\$20",
-        "   lesson.price.toString()",
-        style: TextStyle(color: Colors.white),
-      ),
     );
 
     final bottomContentText = Text(

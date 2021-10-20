@@ -69,8 +69,10 @@ class _HomeState extends State<Home> {
   }
 
   fetchProducts() async {
+    var user = FirebaseAuth.instance.currentUser!;
     final response = FirebaseFirestore.instance
         .collection('courses')
+        .where("instructorId", isEqualTo: user.uid)
         .get()
         .then((QuerySnapshot querySnapshot) {
       List<Courses> temp = [];
