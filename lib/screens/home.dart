@@ -105,10 +105,10 @@ class _HomeState extends State<Home> {
         builder: (context, userSnapshot) {
           return Directionality(
               child: Scaffold(
-                backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+                backgroundColor: Color.fromRGBO(224, 255, 255, .9),
                 drawer: NavDrawer(),
                 appBar: AppBar(
-                  backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+                  backgroundColor: Color.fromRGBO(95, 158, 160, 1.0),
                   title: Text(delegate.pageTitle),
                 ),
                 //bottomSheet: BottomNavigation(),

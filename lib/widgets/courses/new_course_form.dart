@@ -168,9 +168,9 @@ class _NewCourseState extends State<NewCourse> {
               ),
               FlatButton(
                   onPressed: submitData,
-                  child: const Text(
+                  child: Text(
                     "Add Course",
-                    style: TextStyle(color: Colors.purple),
+                    style: TextStyle(color: Theme.of(context).primaryColor),
                   )),
             ],
           ),

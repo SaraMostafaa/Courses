@@ -65,7 +65,7 @@ class _CourseListLitemState extends State<CourseListLitem> {
         elevation: 8.0,
         margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child: Container(
-          decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
+          decoration: BoxDecoration(color: Color.fromRGBO(95, 158, 160, 1.0)),
           child: ListTile(
               onTap: () {
                 Navigator.push(

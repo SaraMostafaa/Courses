@@ -90,9 +90,9 @@ class DetailPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 16.0),
         child: RaisedButton(
           onPressed: () => {},
-          color: Color.fromRGBO(58, 66, 86, 1.0),
-          child:
-              Text("Edit Course Data", style: TextStyle(color: Colors.white)),
+          color: Theme.of(context).primaryColor,
+          child: Text("Edit Course Data",
+              style: TextStyle(color: Colors.white, fontSize: 16)),
         ));
     final bottomContent = Container(
       // height: MediaQuery.of(context).size.height,

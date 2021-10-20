@@ -16,11 +16,18 @@ class CoursesList extends StatelessWidget {
     return Container(
         height: 460,
         child: courses.isEmpty
-            ? Column(
-                children: const <Widget>[
-                  Text("no courses"),
+            ? Center(
+                child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "No Courses Added",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor),
+                  ),
                 ],
-              )
+              ))
             : ListView.builder(
                 itemBuilder: (ctx, index) {
                   return CourseListLitem(

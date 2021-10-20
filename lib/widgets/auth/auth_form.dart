@@ -57,20 +57,21 @@ class _AuthFormState extends State<AuthForm> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    Image(
-                        image: AssetImage(
-                          'assets/images/instructor-icon.png',
-                        ),
-                        width: 100,
-                        height: 70,
-                        fit: BoxFit.fill),
+                    // Image(
+                    //     image: AssetImage(
+                    //       'assets/images/instructor-icon.png',
+                    //     ),
+                    //     width: 100,
+                    //     height: 70,
+                    //     fit: BoxFit.fill),
                     Text(
                       "Instructor",
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
-                          fontSize: 17,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                   ],

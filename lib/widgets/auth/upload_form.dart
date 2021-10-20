@@ -28,6 +28,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.all(20),
       child: Column(
         children: <Widget>[
           CircleAvatar(
@@ -38,7 +39,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
           FlatButton.icon(
             icon: Icon(Icons.image),
             onPressed: _pickImage,
-            label: Text("Add Image"),
+            label: Text("Profile picture"),
           ),
         ],
       ),
