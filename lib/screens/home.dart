@@ -32,15 +32,17 @@ class _HomeState extends State<Home> {
   final LocalStorage storage = new LocalStorage('coursesList');
   AllCourses courses = new AllCourses();
   List<Courses> courseList = [];
-  void addNewCourse(
-      String title, int totalHours, String syllabus, double amount) {
+  void addNewCourse(String title, int totalHours, String syllabus,
+      double amount, String description, String image, DateTime startDate) {
     final newCourse = Courses(
         id: DateTime.now().toString(),
         syllabus: syllabus,
         title: title,
         amount: amount,
-        startDate: DateTime.now(),
-        totalHours: totalHours);
+        startDate: startDate,
+        totalHours: totalHours,
+        description: description,
+        imageURl: image);
     setState(() {
       courses.items.add(newCourse);
     });
@@ -73,13 +75,16 @@ class _HomeState extends State<Home> {
         .then((QuerySnapshot querySnapshot) {
       List<Courses> temp = [];
       querySnapshot.docs.forEach((doc) {
-        temp.add(Courses(
-            title: doc["title"],
-            amount: double.parse(doc["amount"].toString()),
-            startDate: DateTime.now(),
-            syllabus: doc["syllabus"],
-            totalHours: int.parse(doc["hours"].toString()),
-            id: "userId"));
+        temp.add(
+          Courses(
+              title: doc["name"],
+              amount: double.parse(doc["amount"].toString()),
+              startDate: doc["startDate"].toDate(),
+              syllabus: doc["syllabus"],
+              totalHours: int.parse(doc["totalHours"].toString()),
+              id: doc["instructorId"],
+              description: doc["description"]),
+        );
       });
       setState(() {
         courseList = temp;

@@ -8,6 +8,7 @@ class Courses {
   DateTime startDate = DateTime.now();
   int? totalHours;
   String? imageURl;
+  String description = "";
 
   Courses({
     this.id,
@@ -17,10 +18,11 @@ class Courses {
     required this.totalHours,
     required this.startDate,
     this.imageURl,
+    required this.description,
   });
 
   toJSONEncodable() {
-    Map<String, dynamic> m = new Map();
+    Map<String, dynamic> m = {};
 
     m['id'] = id;
     m['title'] = title;
@@ -37,6 +39,7 @@ class Courses {
         syllabus: syllabus,
         amount: amount,
         totalHours: totalHours,
-        startDate: startDate);
+        startDate: startDate,
+        description: description);
   }
 }

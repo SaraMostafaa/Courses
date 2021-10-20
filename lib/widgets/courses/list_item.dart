@@ -1,20 +1,28 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:courses/models/courses.dart';
+import 'package:courses/widgets/courses/details.dart';
 import "package:flutter/material.dart";
+import 'package:intl/intl.dart';
 
 class CourseListLitem extends StatefulWidget {
   String? courseName;
   String? courseAmount;
-  String? courseStartDate;
+  DateTime? courseStartDate;
   String? courseId;
   String? courseImageURL;
+  String? courseTotalHours;
+  String? syllabus;
+  String? courseDescription;
   CourseListLitem(
-    this.courseName,
-    this.courseAmount,
-    this.courseId,
-    this.courseImageURL,
-    this.courseStartDate,
-  );
+      this.courseName,
+      this.courseAmount,
+      this.courseId,
+      this.courseImageURL,
+      this.courseStartDate,
+      this.courseTotalHours,
+      this.syllabus,
+      this.courseDescription);
   @override
   _CourseListLitemState createState() => _CourseListLitemState();
 }
@@ -28,6 +36,20 @@ class _CourseListLitemState extends State<CourseListLitem> {
       child: Container(
         decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
         child: ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailPage(Courses(
+                          amount: double.parse(widget.courseAmount!),
+                          startDate: widget.courseStartDate!,
+                          totalHours: int.parse(widget.courseTotalHours!),
+                          id: widget.courseId,
+                          title: widget.courseName,
+                          imageURl: widget.courseImageURL,
+                          syllabus: widget.syllabus,
+                          description: widget.courseDescription!))));
+            },
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             leading: Container(
@@ -56,7 +78,10 @@ class _CourseListLitemState extends State<CourseListLitem> {
                 Row(
                   // ignore: prefer_const_literals_to_create_immutables
                   children: <Widget>[
-                    Text('start date: ${widget.courseStartDate!}',
+                    Text(
+                        'start date: ${DateFormat("yyyy-MM-dd").format(
+                          widget.courseStartDate!,
+                        )}',
                         style: TextStyle(color: Colors.white))
                   ],
                 ),

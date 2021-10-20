@@ -24,12 +24,14 @@ class CoursesList extends StatelessWidget {
             : ListView.builder(
                 itemBuilder: (ctx, index) {
                   return CourseListLitem(
-                    courses[index].title.toString(),
-                    courses[index].amount.toString(),
-                    courses[index].id.toString(),
-                    courses[index].imageURl.toString(),
-                    DateFormat("yyyy-MM-dd").format(courses[index].startDate),
-                  );
+                      courses[index].title.toString(),
+                      courses[index].amount.toString(),
+                      courses[index].id.toString(),
+                      courses[index].imageURl.toString(),
+                      courses[index].startDate,
+                      courses[index].totalHours.toString(),
+                      courses[index].syllabus.toString(),
+                      courses[index].description);
                 },
                 itemCount: courses.length,
               ));

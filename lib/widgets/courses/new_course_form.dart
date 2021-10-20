@@ -30,40 +30,45 @@ class _NewCourseState extends State<NewCourse> {
   final totalHoursController = TextEditingController();
   final amountController = TextEditingController();
   final startDateController = TextEditingController();
-  File? _courseImage = new File(
-      "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101028.jpg");
+  final descriptionController = TextEditingController();
+  String? _courseImage =
+      "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101028.jpg";
 
-  void pickedImage(File image) {
-    var user = FirebaseAuth.instance.currentUser!;
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("course_image")
-        .child(user.uid + DateTime.now().toString() + '.jpg');
-    _courseImage = image;
-  }
+  // void pickedImage(File image) {
+  //   var user = FirebaseAuth.instance.currentUser!;
+  //   final ref = FirebaseStorage.instance
+  //       .ref()
+  //       .child("course_image")
+  //       .child(user.uid + DateTime.now().toString() + '.jpg');
+  //   _courseImage = image;
+  // }
 
   void submitData() async {
     final enteredTitle = titleController.text;
     final enteredTotalHours = int.parse(totalHoursController.text);
     final enteredSyllbus = syllabusController.text;
+    final enteredDescription = descriptionController.text;
     final enteredAmount = double.parse(amountController.text);
+
     if (enteredTitle.isEmpty ||
         enteredTotalHours <= 0 ||
         enteredTitle.isEmpty ||
         enteredAmount <= 0) return;
     widget.addNewCourse(enteredTitle, enteredTotalHours, enteredSyllbus,
-        enteredAmount, _courseImage);
+        enteredAmount, enteredDescription, _courseImage, startDate);
     var user = FirebaseAuth.instance.currentUser!;
 
     FirebaseFirestore.instance.collection("courses").add({
       "name": enteredTitle,
       "syllabus": enteredSyllbus,
       "totalHours": enteredTotalHours,
-      "startDate": DateTime.now(),
+      "startDate": startDate,
       "amount": enteredAmount,
       "instructorId": user.uid,
       "courseId": user.uid + DateTime.now().toString(),
-      "image": _courseImage
+      "image":
+          "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg",
+      "description": enteredDescription,
     });
   }
 
@@ -135,8 +140,9 @@ class _NewCourseState extends State<NewCourse> {
                               lastDate: DateTime(2101));
 
                           if (pickedDate != null) {
-                            print(
-                                pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                            setState(() {
+                              startDate = pickedDate;
+                            }); //pickedDate output format => 2021-03-10 00:00:00.000
                             String formattedDate =
                                 DateFormat('yyyy-MM-dd').format(pickedDate);
                             print(
@@ -154,6 +160,12 @@ class _NewCourseState extends State<NewCourse> {
                       ),
                     )),
               ]),
+              TextField(
+                decoration: InputDecoration(labelText: "Description"),
+                controller: descriptionController,
+                keyboardType: TextInputType.multiline,
+                onSubmitted: (_) => {submitData()},
+              ),
               FlatButton(
                   onPressed: submitData,
                   child: const Text(
