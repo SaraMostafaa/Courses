@@ -12,7 +12,8 @@ class CourseListLitem extends StatefulWidget {
   String? courseAmount;
   DateTime? courseStartDate;
   String? courseId;
-  String? courseImageURL;
+  String? courseImageURL =
+      "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg";
   String? courseTotalHours;
   String? syllabus;
   String? courseDescription;
@@ -88,7 +89,9 @@ class _CourseListLitemState extends State<CourseListLitem> {
                 decoration: BoxDecoration(
                     border: Border(
                         right: BorderSide(width: 1.0, color: Colors.white24))),
-                child: Icon(Icons.autorenew, color: Colors.white),
+                child: Image(
+                    image: NetworkImage(
+                        "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg")),
               ),
               title: Text(
                 widget.courseName!,

@@ -37,7 +37,7 @@ Widget buildLanguage(BuildContext context) => DropDownSettingsTile(
     settingKey: "key-language",
     subtitle: "",
     selected: 1,
-    values: <int, String>{1: "English", 2: "العربية"},
+    values: <int, String>{1: "English"},
     onChange: (language) => {});
 
 Widget buildAccountInfo(BuildContext context) => SimpleSettingsTile(

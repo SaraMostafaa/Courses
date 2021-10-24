@@ -31,7 +31,7 @@ class _SettingsState extends State<Settings> {
               title: "General",
               children: <Widget>[
                 Account(),
-                buildLogout(),
+                //buildLogout(),
               ],
             ),
           ],
