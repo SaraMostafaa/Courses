@@ -1,22 +1,59 @@
 import 'package:courses/models/courses.dart';
+import 'package:courses/screens/courses/edit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class DetailPage extends StatelessWidget {
-  final Courses course;
+class DetailPage extends StatefulWidget {
+  Courses course;
   DetailPage(this.course);
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  updateCourseDetails(newDetails) {
+    setState(() {
+      widget.course = newDetails;
+    });
+  }
+
+  goToEditPage(context) {
+    var user = FirebaseAuth.instance.currentUser!;
+
+    Courses previouseCourse = Courses(
+      syllabus: widget.course.syllabus,
+      amount: widget.course.amount,
+      totalHours: widget.course.totalHours,
+      startDate: widget.course.startDate,
+      description: widget.course.description,
+      id: widget.course.id,
+      imageURl: widget.course.imageURl,
+      title: widget.course.title,
+      instructorId: user.uid,
+    );
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                EditCourse(previouseCourse, updateCourseDetails)));
+  }
+
   @override
   Widget build(BuildContext context) {
     final coursePrice = Container(
-      padding: const EdgeInsets.all(3.0),
-      decoration: new BoxDecoration(
-          border: new Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(5.0)),
-      child: new Text(
-        // "\$20",
-        '\$ ${course.amount.toString()}',
-        style: TextStyle(color: Colors.white),
-      ),
-    );
+        padding: const EdgeInsets.all(3.0),
+        decoration: new BoxDecoration(
+            border: new Border.all(color: Colors.white),
+            borderRadius: BorderRadius.circular(5.0)),
+        child: Center(
+          child: Text(
+            // "\$20",
+            '\$ ${widget.course.amount.toString()}',
+            style: TextStyle(color: Colors.white),
+          ),
+        ));
 
     final topContentText = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +65,7 @@ class DetailPage extends StatelessWidget {
         ),
         SizedBox(height: 10.0),
         Text(
-          course.title!,
+          widget.course.title!,
           style: TextStyle(color: Colors.white, fontSize: 45.0),
         ),
         SizedBox(height: 30.0),
@@ -40,10 +77,10 @@ class DetailPage extends StatelessWidget {
                 child: Padding(
                     padding: EdgeInsets.only(left: 10.0),
                     child: Text(
-                      '${course.totalHours.toString()} Hours',
+                      '${widget.course.totalHours.toString()} Hours',
                       style: TextStyle(color: Colors.white),
                     ))),
-            Expanded(flex: 1, child: coursePrice)
+            Expanded(flex: 2, child: coursePrice)
           ],
         ),
       ],
@@ -83,13 +120,13 @@ class DetailPage extends StatelessWidget {
     );
 
     final bottomContentText = Text(
-      course.description,
+      widget.course.description,
       style: TextStyle(fontSize: 18.0),
     );
     final readButton = Padding(
         padding: EdgeInsets.symmetric(vertical: 16.0),
         child: RaisedButton(
-          onPressed: () => {},
+          onPressed: () => {goToEditPage(context)},
           color: Theme.of(context).primaryColor,
           child: Text("Edit Course Data",
               style: TextStyle(color: Colors.white, fontSize: 16)),

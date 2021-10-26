@@ -2,7 +2,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courses/models/courses.dart';
+import 'package:courses/screens/courses/edit.dart';
 import 'package:courses/widgets/courses/details.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:intl/intl.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -32,29 +34,87 @@ class CourseListLitem extends StatefulWidget {
 }
 
 class _CourseListLitemState extends State<CourseListLitem> {
-  Future<void> deleteUser(courseId) {
-    FirebaseFirestore.instance
-        .collection("courses")
-        .where("id", isEqualTo: courseId)
-        .get()
-        .then((value) {
-      value.docs.forEach((element) {
-        FirebaseFirestore.instance
-            .collection("courses")
-            .doc(element.id)
-            .delete()
-            .then((value) {
-          print("Success!");
-        });
-      });
-    });
+  Future<void> _showMyDialog(courseId) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete  this item'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Text('Are you sure you   want to delete this course?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Confirm'),
+              onPressed: () {
+                FirebaseFirestore.instance
+                    .collection("courses")
+                    .where("id", isEqualTo: courseId)
+                    .get()
+                    .then((value) {
+                  value.docs.forEach((element) {
+                    FirebaseFirestore.instance
+                        .collection("courses")
+                        .doc(element.id)
+                        .delete()
+                        .then((value) {
+                      print("Success!");
+                    });
+                  });
+                });
 
-    return FirebaseFirestore.instance
-        .collection('courses')
-        .doc(courseId)
-        .delete()
-        .then((value) => print(courseId))
-        .catchError((error) => print("Failed to delete user: $error"));
+                FirebaseFirestore.instance
+                    .collection('courses')
+                    .doc(courseId)
+                    .delete()
+                    .then((value) => print(courseId))
+                    .catchError(
+                        (error) => print("Failed to delete user: $error"));
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> deleteCourse(courseId) async {
+    var answer = await _showMyDialog(courseId);
+  }
+
+  updateCourseDetails() {}
+  goToEditPage() {
+    var user = FirebaseAuth.instance.currentUser!;
+
+    Courses previouseCourse = Courses(
+      syllabus: widget.syllabus,
+      amount: double.parse(widget.courseAmount!),
+      totalHours: int.parse(widget.courseTotalHours!),
+      startDate: widget.courseStartDate!,
+      description: widget.courseDescription!,
+      id: widget.courseId,
+      imageURl: widget.courseImageURL,
+      title: widget.courseName,
+      instructorId: user.uid,
+    );
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                EditCourse(previouseCourse, updateCourseDetails())));
   }
 
   @override
@@ -126,17 +186,17 @@ class _CourseListLitemState extends State<CourseListLitem> {
         ),
       ),
       secondaryActions: <Widget>[
-        new IconSlideAction(
-          caption: 'Edit',
-          color: Colors.black45,
-          icon: Icons.more_horiz,
-          onTap: () => {},
-        ),
-        new IconSlideAction(
+        // IconSlideAction(
+        //   caption: 'Edit',
+        //   color: Colors.black45,
+        //   icon: Icons.more_horiz,
+        //   onTap: () => {goToEditPage()},
+        // ),
+        IconSlideAction(
           caption: 'Delete',
           color: Colors.red,
           icon: Icons.delete,
-          onTap: () => {deleteUser(widget.courseId)},
+          onTap: () => {deleteCourse(widget.courseId)},
         ),
       ],
     );
