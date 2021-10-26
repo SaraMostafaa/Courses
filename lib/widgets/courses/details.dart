@@ -12,7 +12,8 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  updateCourseDetails(newDetails) {
+  updateCourseDetails(Courses newDetails) {
+    print(newDetails.imageURl);
     setState(() {
       widget.course = newDetails;
     });
@@ -92,7 +93,9 @@ class _DetailPageState extends State<DetailPage> {
             height: MediaQuery.of(context).size.height * 0.5,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(widget.course.imageURl!),
+                image: NetworkImage(widget.course.imageURl != null
+                    ? widget.course.imageURl!
+                    : "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101028.jpg"),
                 fit: BoxFit.cover,
               ),
             )),

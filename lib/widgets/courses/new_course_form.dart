@@ -79,7 +79,7 @@ class _NewCourseState extends State<NewCourse> {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: startDate,
-        firstDate: DateTime(2015, 8),
+        firstDate: DateTime.now(),
         lastDate: DateTime(2101));
     if (picked != null && picked != startDate)
       setState(() {
@@ -98,28 +98,52 @@ class _NewCourseState extends State<NewCourse> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               UserImagePicker(pickedImage),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(labelText: S.of(context).title),
                 controller: titleController,
-                onSubmitted: (_) => {submitData()},
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter a course title";
+                  }
+                  return null;
+                },
+                onSaved: (_) => {submitData()},
               ),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(labelText: S.of(context).syllabus),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter course syllabus";
+                  }
+                  return null;
+                },
                 controller: syllabusController,
-                onSubmitted: (_) => {submitData()},
+                onSaved: (_) => {submitData()},
               ),
-              TextField(
+              TextFormField(
                 decoration: InputDecoration(labelText: "Amount"),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter course amount";
+                  }
+                  return null;
+                },
                 controller: amountController,
                 keyboardType: TextInputType.number,
-                onSubmitted: (_) => {submitData()},
+                onSaved: (_) => {submitData()},
               ),
-              TextField(
+              TextFormField(
                 decoration:
                     InputDecoration(labelText: S.of(context).totalHours),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter course totalHours";
+                  }
+                  return null;
+                },
                 controller: totalHoursController,
                 keyboardType: TextInputType.number,
-                onSubmitted: (_) => {submitData()},
+                onSaved: (_) => {submitData()},
               ),
               Column(children: <Widget>[
                 Container(
@@ -139,8 +163,8 @@ class _NewCourseState extends State<NewCourse> {
                           DateTime? pickedDate = await showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
-                              firstDate: DateTime(
-                                  2000), //DateTime.now() - not to allow to choose before today.
+                              firstDate: DateTime
+                                  .now(), //DateTime.now() - not to allow to choose before today.
                               lastDate: DateTime(2101));
 
                           if (pickedDate != null) {

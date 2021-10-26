@@ -94,84 +94,79 @@ class _CourseListLitemState extends State<CourseListLitem> {
     var answer = await _showMyDialog(courseId);
   }
 
-  updateCourseDetails() {}
-  goToEditPage() {
-    var user = FirebaseAuth.instance.currentUser!;
+  // goToEditPage() {
+  //   var user = FirebaseAuth.instance.currentUser!;
 
-    Courses previouseCourse = Courses(
-      syllabus: widget.syllabus,
-      amount: double.parse(widget.courseAmount!),
-      totalHours: int.parse(widget.courseTotalHours!),
-      startDate: widget.courseStartDate!,
-      description: widget.courseDescription!,
-      id: widget.courseId,
-      imageURl: widget.courseImageURL,
-      title: widget.courseName,
-      instructorId: user.uid,
-    );
+  //   Courses previouseCourse = Courses(
+  //     syllabus: widget.syllabus,
+  //     amount: double.parse(widget.courseAmount!),
+  //     totalHours: int.parse(widget.courseTotalHours!),
+  //     startDate: widget.courseStartDate!,
+  //     description: widget.courseDescription!,
+  //     id: widget.courseId,
+  //     imageURl: widget.courseImageURL,
+  //     title: widget.courseName,
+  //     instructorId: user.uid,
+  //   );
 
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                EditCourse(previouseCourse, updateCourseDetails())));
-  }
+  //   Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) =>
+  //               EditCourse(previouseCourse)));
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
-      child: Card(
-        elevation: 8.0,
-        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        child: Container(
-          decoration: BoxDecoration(color: Color.fromRGBO(95, 158, 160, 1.0)),
-          child: ListTile(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailPage(Courses(
-                            amount: double.parse(widget.courseAmount!),
-                            startDate: widget.courseStartDate!,
-                            totalHours: int.parse(widget.courseTotalHours!),
-                            id: widget.courseId,
-                            title: widget.courseName,
-                            imageURl: widget.courseImageURL,
-                            syllabus: widget.syllabus,
-                            description: widget.courseDescription!))));
-              },
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              leading: Container(
-                  padding: EdgeInsets.only(right: 12.0),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          right:
-                              BorderSide(width: 1.0, color: Colors.white24))),
-                  child: Image(
-                    image: NetworkImage(widget.courseImageURL!),
-                  )),
-              title: Text(
-                widget.courseName!,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-              // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-              subtitle: Column(
-                children: [
-                  Row(
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: <Widget>[
-                      Text('cost: \$ ${widget.courseAmount!}',
-                          style: TextStyle(color: Colors.white))
-                    ],
+      child: GestureDetector(
+        onTap: () => {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailPage(Courses(
+                      amount: double.parse(widget.courseAmount!),
+                      startDate: widget.courseStartDate!,
+                      totalHours: int.parse(widget.courseTotalHours!),
+                      id: widget.courseId,
+                      title: widget.courseName,
+                      imageURl: widget.courseImageURL,
+                      syllabus: widget.syllabus,
+                      description: widget.courseDescription!))))
+        },
+        child: Card(
+          elevation: 8.0,
+          margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+          child: Container(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    child: Image(
+                      height: 100,
+                      image: NetworkImage(widget.courseImageURL!),
+                      fit: BoxFit.fill,
+                    ),
+                    margin: EdgeInsets.all(10),
                   ),
-                  Row(
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: <Widget>[
+                  flex: 1,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.courseName!,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text('cost: \$ ${widget.courseAmount!}',
+                          style: TextStyle(color: Colors.white)),
                       Text(
                           'start date: ${DateFormat("yyyy-MM-dd").format(
                             widget.courseStartDate!,
@@ -179,10 +174,17 @@ class _CourseListLitemState extends State<CourseListLitem> {
                           style: TextStyle(color: Colors.white))
                     ],
                   ),
-                ],
-              ),
-              trailing: Icon(Icons.keyboard_arrow_right,
-                  color: Colors.white, size: 30.0)),
+                  flex: 2,
+                ),
+                Expanded(
+                    child: Icon(Icons.keyboard_arrow_right,
+                        color: Colors.white, size: 30.0))
+              ],
+            ),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(95, 158, 160, 1.0),
+            ),
+          ),
         ),
       ),
       secondaryActions: <Widget>[

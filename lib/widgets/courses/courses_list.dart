@@ -41,6 +41,7 @@ class CoursesList extends StatelessWidget {
                       courses[index].description);
                 },
                 itemCount: courses.length,
+                itemExtent: 120,
               ));
   }
 }

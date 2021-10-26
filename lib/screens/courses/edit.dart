@@ -5,12 +5,11 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courses/generated/l10n.dart';
 import 'package:courses/models/courses.dart';
+import 'package:courses/widgets/auth/upload_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import "package:flutter/material.dart";
 import 'package:intl/intl.dart';
-import 'package:localstorage/localstorage.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class EditCourse extends StatefulWidget {
   Courses course;
@@ -33,8 +32,19 @@ class _EditCourseState extends State<EditCourse> {
   final amountController = TextEditingController();
   final startDateController = TextEditingController();
   final descriptionController = TextEditingController();
-  String? _courseImage =
-      "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101028.jpg";
+  String? _courseImageURL = "";
+
+  void pickedImage(File image) async {
+    var user = FirebaseAuth.instance.currentUser!;
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("course_image")
+        .child(user.uid + DateTime.now().toString() + '.jpg');
+    await ref.putFile(image);
+
+    final url = await ref.getDownloadURL();
+    _courseImageURL = url;
+  }
 
   void submitData() async {
     final enteredTitle = titleController.text;
@@ -68,18 +78,23 @@ class _EditCourseState extends State<EditCourse> {
               "amount": enteredAmount,
               "instructorId": user.uid,
               "id": user.uid + DateTime.now().toString(),
-              "image":
-                  "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg",
+              "image": _courseImageURL == ""
+                  ? widget.course.imageURl
+                  : _courseImageURL,
               "description": enteredDescription,
             })
             .then((value) => {
                   widget.updateDetails(Courses(
-                      syllabus: enteredSyllbus,
-                      amount: enteredAmount,
-                      totalHours: enteredTotalHours,
-                      startDate: startDate,
-                      description: enteredDescription,
-                      title: enteredTitle)),
+                    syllabus: enteredSyllbus,
+                    amount: enteredAmount,
+                    totalHours: enteredTotalHours,
+                    startDate: startDate,
+                    description: enteredDescription,
+                    title: enteredTitle,
+                    imageURl: _courseImageURL == ""
+                        ? widget.course.imageURl
+                        : _courseImageURL,
+                  )),
                   Navigator.of(context).pop()
                 })
             .catchError((error) => print("Failed to delete user: $error"));
@@ -90,9 +105,10 @@ class _EditCourseState extends State<EditCourse> {
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
-        initialDate: startDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2050));
+
     if (picked != null && picked != startDate)
       setState(() {
         startDate = picked;
@@ -127,30 +143,55 @@ class _EditCourseState extends State<EditCourse> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
-                        TextField(
+                        UserImagePicker(pickedImage, widget.course.imageURl!),
+                        TextFormField(
                           decoration:
                               InputDecoration(labelText: S.of(context).title),
                           controller: titleController,
-                          onSubmitted: (_) => {submitData()},
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Please enter a course title";
+                            }
+                            return null;
+                          },
+                          onSaved: (_) => {submitData()},
                         ),
-                        TextField(
+                        TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Please enter course syllabus";
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
                               labelText: S.of(context).syllabus),
                           controller: syllabusController,
-                          onSubmitted: (_) => {submitData()},
+                          onSaved: (_) => {submitData()},
                         ),
-                        TextField(
+                        TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Please enter course amount";
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(labelText: "Amount"),
                           controller: amountController,
                           keyboardType: TextInputType.number,
-                          onSubmitted: (_) => {submitData()},
+                          onSaved: (_) => {submitData()},
                         ),
-                        TextField(
+                        TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Please enter course totalHours";
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
                               labelText: S.of(context).totalHours),
                           controller: totalHoursController,
                           keyboardType: TextInputType.number,
-                          onSubmitted: (_) => {submitData()},
+                          onSaved: (_) => {submitData()},
                         ),
                         Column(children: <Widget>[
                           Container(
@@ -171,25 +212,19 @@ class _EditCourseState extends State<EditCourse> {
                                     DateTime? pickedDate = await showDatePicker(
                                         context: context,
                                         initialDate: DateTime.now(),
-                                        firstDate: DateTime(
-                                            2000), //DateTime.now() - not to allow to choose before today.
+                                        firstDate: DateTime
+                                            .now(), //DateTime.now() - not to allow to choose before today.
                                         lastDate: DateTime(2101));
 
                                     if (pickedDate != null) {
+                                      print(pickedDate);
                                       setState(() {
                                         startDate = pickedDate;
-                                      }); //pickedDate output format => 2021-03-10 00:00:00.000
-                                      String formattedDate =
-                                          DateFormat('yyyy-MM-dd')
-                                              .format(pickedDate);
-                                      print(
-                                          formattedDate); //formatted date output using intl package =>  2021-03-16
-                                      //you can implement different kind of Date Format here according to your requirement
-
-                                      setState(() {
                                         startDateController.text =
-                                            formattedDate; //set output date to TextField value.
-                                      });
+                                            DateFormat('yyyy-MM-dd')
+                                                .format(pickedDate);
+                                      }); //pickedDate output format => 2021-03-10 00:00:00.000
+
                                     } else {
                                       print("Date is not selected");
                                     }
