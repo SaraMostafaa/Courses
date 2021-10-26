@@ -86,7 +86,8 @@ class _HomeState extends State<Home> {
               totalHours: int.parse(doc["totalHours"].toString()),
               id: doc["id"],
               description: doc["description"],
-              instructorId: doc["instructorId"]),
+              instructorId: doc["instructorId"],
+              imageURl: doc["image"]),
         );
       });
       setState(() {

@@ -145,14 +145,14 @@ class _CourseListLitemState extends State<CourseListLitem> {
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               leading: Container(
-                padding: EdgeInsets.only(right: 12.0),
-                decoration: BoxDecoration(
-                    border: Border(
-                        right: BorderSide(width: 1.0, color: Colors.white24))),
-                child: Image(
-                    image: NetworkImage(
-                        "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg")),
-              ),
+                  padding: EdgeInsets.only(right: 12.0),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          right:
+                              BorderSide(width: 1.0, color: Colors.white24))),
+                  child: Image(
+                    image: NetworkImage(widget.courseImageURL!),
+                  )),
               title: Text(
                 widget.courseName!,
                 style:

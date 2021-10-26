@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courses/generated/l10n.dart';
+import 'package:courses/widgets/auth/upload_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import "package:flutter/material.dart";
@@ -31,17 +32,20 @@ class _NewCourseState extends State<NewCourse> {
   final amountController = TextEditingController();
   final startDateController = TextEditingController();
   final descriptionController = TextEditingController();
-  String? _courseImage =
+  String? _courseImageURL =
       "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101028.jpg";
 
-  // void pickedImage(File image) {
-  //   var user = FirebaseAuth.instance.currentUser!;
-  //   final ref = FirebaseStorage.instance
-  //       .ref()
-  //       .child("course_image")
-  //       .child(user.uid + DateTime.now().toString() + '.jpg');
-  //   _courseImage = image;
-  // }
+  void pickedImage(File image) async {
+    var user = FirebaseAuth.instance.currentUser!;
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("course_image")
+        .child(user.uid + DateTime.now().toString() + '.jpg');
+    await ref.putFile(image);
+
+    final url = await ref.getDownloadURL();
+    _courseImageURL = url;
+  }
 
   void submitData() async {
     final enteredTitle = titleController.text;
@@ -55,7 +59,7 @@ class _NewCourseState extends State<NewCourse> {
         enteredTitle.isEmpty ||
         enteredAmount <= 0) return;
     widget.addNewCourse(enteredTitle, enteredTotalHours, enteredSyllbus,
-        enteredAmount, enteredDescription, _courseImage, startDate);
+        enteredAmount, enteredDescription, _courseImageURL, startDate);
     var user = FirebaseAuth.instance.currentUser!;
 
     FirebaseFirestore.instance.collection("courses").add({
@@ -66,8 +70,7 @@ class _NewCourseState extends State<NewCourse> {
       "amount": enteredAmount,
       "instructorId": user.uid,
       "id": user.uid + DateTime.now().toString(),
-      "image":
-          "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg",
+      "image": _courseImageURL,
       "description": enteredDescription,
     });
   }
@@ -94,6 +97,7 @@ class _NewCourseState extends State<NewCourse> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
+              UserImagePicker(pickedImage),
               TextField(
                 decoration: InputDecoration(labelText: S.of(context).title),
                 controller: titleController,

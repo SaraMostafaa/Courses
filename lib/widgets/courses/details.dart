@@ -90,10 +90,9 @@ class _DetailPageState extends State<DetailPage> {
         Container(
             padding: EdgeInsets.only(left: 10.0),
             height: MediaQuery.of(context).size.height * 0.5,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    "https://st2.depositphotos.com/1350793/8441/i/600/depositphotos_84416316-stock-photo-hand-pointing-to-online-course.jpg"),
+                image: NetworkImage(widget.course.imageURl!),
                 fit: BoxFit.cover,
               ),
             )),
