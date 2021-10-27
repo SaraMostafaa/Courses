@@ -22,6 +22,8 @@ class EditCourse extends StatefulWidget {
 }
 
 class _EditCourseState extends State<EditCourse> {
+  final _editCourseFormKey = GlobalKey<FormState>();
+
   UserCredential? userCredential;
   DateTime startDate = DateTime.now();
   final format = DateFormat("yyyy-MM-dd");
@@ -47,59 +49,65 @@ class _EditCourseState extends State<EditCourse> {
   }
 
   void submitData() async {
-    final enteredTitle = titleController.text;
-    final enteredTotalHours = int.parse(totalHoursController.text);
-    final enteredSyllbus = syllabusController.text;
-    final enteredDescription = descriptionController.text;
-    final enteredAmount = double.parse(amountController.text);
-    if (enteredTitle.isEmpty ||
-        enteredTotalHours <= 0 ||
-        enteredTitle.isEmpty ||
-        enteredAmount <= 0) return;
-    // widget.editCourse(enteredTitle, enteredTotalHours, enteredSyllbus,
-    //     enteredAmount, enteredDescription, _courseImage, startDate);
-    print(widget.course.id);
-    var user = FirebaseAuth.instance.currentUser!;
+    final isValid = _editCourseFormKey.currentState!.validate();
+    print(isValid);
+    FocusScope.of(context).unfocus();
 
-    return FirebaseFirestore.instance
-        .collection('courses')
-        .where("id", isEqualTo: widget.course.id)
-        .get()
-        .then((value) {
-      value.docs.forEach((element) {
-        FirebaseFirestore.instance
-            .collection("courses")
-            .doc(element.id)
-            .update({
-              "name": enteredTitle,
-              "syllabus": enteredSyllbus,
-              "totalHours": enteredTotalHours,
-              "startDate": startDate,
-              "amount": enteredAmount,
-              "instructorId": user.uid,
-              "id": user.uid + DateTime.now().toString(),
-              "image": _courseImageURL == ""
-                  ? widget.course.imageURl
-                  : _courseImageURL,
-              "description": enteredDescription,
-            })
-            .then((value) => {
-                  widget.updateDetails(Courses(
-                    syllabus: enteredSyllbus,
-                    amount: enteredAmount,
-                    totalHours: enteredTotalHours,
-                    startDate: startDate,
-                    description: enteredDescription,
-                    title: enteredTitle,
-                    imageURl: _courseImageURL == ""
-                        ? widget.course.imageURl
-                        : _courseImageURL,
-                  )),
-                  Navigator.of(context).pop()
-                })
-            .catchError((error) => print("Failed to delete user: $error"));
+    if (isValid) {
+      final enteredTitle = titleController.text;
+      final enteredTotalHours = int.parse(totalHoursController.text);
+      final enteredSyllbus = syllabusController.text;
+      final enteredDescription = descriptionController.text;
+      final enteredAmount = double.parse(amountController.text);
+      if (enteredTitle.isEmpty ||
+          enteredTotalHours <= 0 ||
+          enteredTitle.isEmpty ||
+          enteredAmount <= 0) return;
+      // widget.editCourse(enteredTitle, enteredTotalHours, enteredSyllbus,
+      //     enteredAmount, enteredDescription, _courseImage, startDate);
+      print(widget.course.id);
+      var user = FirebaseAuth.instance.currentUser!;
+
+      return FirebaseFirestore.instance
+          .collection('courses')
+          .where("id", isEqualTo: widget.course.id)
+          .get()
+          .then((value) {
+        value.docs.forEach((element) {
+          FirebaseFirestore.instance
+              .collection("courses")
+              .doc(element.id)
+              .update({
+                "name": enteredTitle,
+                "syllabus": enteredSyllbus,
+                "totalHours": enteredTotalHours,
+                "startDate": startDate,
+                "amount": enteredAmount,
+                "instructorId": user.uid,
+                "id": user.uid + DateTime.now().toString(),
+                "image": _courseImageURL == ""
+                    ? widget.course.imageURl
+                    : _courseImageURL,
+                "description": enteredDescription,
+              })
+              .then((value) => {
+                    widget.updateDetails(Courses(
+                      syllabus: enteredSyllbus,
+                      amount: enteredAmount,
+                      totalHours: enteredTotalHours,
+                      startDate: startDate,
+                      description: enteredDescription,
+                      title: enteredTitle,
+                      imageURl: _courseImageURL == ""
+                          ? widget.course.imageURl
+                          : _courseImageURL,
+                    )),
+                    Navigator.of(context).pop()
+                  })
+              .catchError((error) => print("Failed to delete user: $error"));
+        });
       });
-    });
+    }
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -140,112 +148,117 @@ class _EditCourseState extends State<EditCourse> {
                 child: SingleChildScrollView(
                   child: Container(
                     padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        UserImagePicker(pickedImage, widget.course.imageURl!),
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: S.of(context).title),
-                          controller: titleController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Please enter a course title";
-                            }
-                            return null;
-                          },
-                          onSaved: (_) => {submitData()},
-                        ),
-                        TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Please enter course syllabus";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              labelText: S.of(context).syllabus),
-                          controller: syllabusController,
-                          onSaved: (_) => {submitData()},
-                        ),
-                        TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Please enter course amount";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(labelText: "Amount"),
-                          controller: amountController,
-                          keyboardType: TextInputType.number,
-                          onSaved: (_) => {submitData()},
-                        ),
-                        TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Please enter course totalHours";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              labelText: S.of(context).totalHours),
-                          controller: totalHoursController,
-                          keyboardType: TextInputType.number,
-                          onSaved: (_) => {submitData()},
-                        ),
-                        Column(children: <Widget>[
-                          Container(
-                              // padding: EdgeInsets.all(15),
-                              height: 100,
-                              child: Center(
-                                child: TextField(
-                                  controller:
-                                      startDateController, //editing controller of this TextField
-                                  decoration: InputDecoration(
-                                      //icon of text field
-                                      labelText:
-                                          "Start Date" //label text of field
-                                      ),
-                                  readOnly:
-                                      true, //set it true, so that user will not able to edit text
-                                  onTap: () async {
-                                    DateTime? pickedDate = await showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime
-                                            .now(), //DateTime.now() - not to allow to choose before today.
-                                        lastDate: DateTime(2101));
+                    child: Form(
+                      key: _editCourseFormKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          UserImagePicker(pickedImage, widget.course.imageURl!),
+                          TextFormField(
+                            decoration:
+                                InputDecoration(labelText: S.of(context).title),
+                            controller: titleController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Please enter a course title";
+                              }
+                              return null;
+                            },
+                            onSaved: (_) => {submitData()},
+                          ),
+                          TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Please enter course syllabus";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                labelText: S.of(context).syllabus),
+                            controller: syllabusController,
+                            onSaved: (_) => {submitData()},
+                          ),
+                          TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Please enter course amount";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(labelText: "Amount"),
+                            controller: amountController,
+                            keyboardType: TextInputType.number,
+                            onSaved: (_) => {submitData()},
+                          ),
+                          TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Please enter course totalHours";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                labelText: S.of(context).totalHours),
+                            controller: totalHoursController,
+                            keyboardType: TextInputType.number,
+                            onSaved: (_) => {submitData()},
+                          ),
+                          Column(children: <Widget>[
+                            Container(
+                                // padding: EdgeInsets.all(15),
+                                height: 100,
+                                child: Center(
+                                  child: TextField(
+                                    controller:
+                                        startDateController, //editing controller of this TextField
+                                    decoration: InputDecoration(
+                                        //icon of text field
+                                        labelText:
+                                            "Start Date" //label text of field
+                                        ),
+                                    readOnly:
+                                        true, //set it true, so that user will not able to edit text
+                                    onTap: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime
+                                                  .now(), //DateTime.now() - not to allow to choose before today.
+                                              lastDate: DateTime(2101));
 
-                                    if (pickedDate != null) {
-                                      print(pickedDate);
-                                      setState(() {
-                                        startDate = pickedDate;
-                                        startDateController.text =
-                                            DateFormat('yyyy-MM-dd')
-                                                .format(pickedDate);
-                                      }); //pickedDate output format => 2021-03-10 00:00:00.000
+                                      if (pickedDate != null) {
+                                        print(pickedDate);
+                                        setState(() {
+                                          startDate = pickedDate;
+                                          startDateController.text =
+                                              DateFormat('yyyy-MM-dd')
+                                                  .format(pickedDate);
+                                        }); //pickedDate output format => 2021-03-10 00:00:00.000
 
-                                    } else {
-                                      print("Date is not selected");
-                                    }
-                                  },
-                                ),
+                                      } else {
+                                        print("Date is not selected");
+                                      }
+                                    },
+                                  ),
+                                )),
+                          ]),
+                          TextField(
+                            decoration:
+                                InputDecoration(labelText: "Description"),
+                            controller: descriptionController,
+                            keyboardType: TextInputType.multiline,
+                            onSubmitted: (_) => {submitData()},
+                          ),
+                          FlatButton(
+                              onPressed: submitData,
+                              child: Text(
+                                "Edit Course",
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
                               )),
-                        ]),
-                        TextField(
-                          decoration: InputDecoration(labelText: "Description"),
-                          controller: descriptionController,
-                          keyboardType: TextInputType.multiline,
-                          onSubmitted: (_) => {submitData()},
-                        ),
-                        FlatButton(
-                            onPressed: submitData,
-                            child: Text(
-                              "Edit Course",
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor),
-                            )),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
