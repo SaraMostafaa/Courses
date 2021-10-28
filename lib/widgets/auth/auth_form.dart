@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:courses/screens/auth/forget_password.dart';
 import 'package:flutter/material.dart';
 import '../auth/upload_form.dart';
 
@@ -21,7 +22,7 @@ class _AuthFormState extends State<AuthForm> {
   String _email = "";
   String _userName = "";
   String _password = "";
-  File? _userImage = new File(
+  File? _userImage = File(
       "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101028.jpg");
 
   void pickedImage(File image) {
@@ -58,15 +59,7 @@ class _AuthFormState extends State<AuthForm> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    // Image(
-                    //     image: AssetImage(
-                    //       'assets/images/instructor-icon.png',
-                    //     ),
-                    //     width: 100,
-                    //     height: 70,
-                    //     fit: BoxFit.fill),
                     Text(
                       "Instructor",
                       style: TextStyle(
@@ -136,6 +129,18 @@ class _AuthFormState extends State<AuthForm> {
                   }),
                   child: Text(
                     isLogin ? "Register Now" : "Already have an account?",
+                  ),
+                  textColor: Theme.of(context).accentColor,
+                ),
+                FlatButton(
+                  onPressed: (() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgetPasswordScreen()));
+                  }),
+                  child: Text(
+                    "Forget password?",
                   ),
                   textColor: Theme.of(context).accentColor,
                 )

@@ -14,7 +14,6 @@ import 'intl/messages_all.dart';
 
 class S {
   S();
-  static bool isRTL = false;
 
   static S? _current;
 
@@ -35,11 +34,7 @@ class S {
       Intl.defaultLocale = localeName;
       final instance = S();
       S._current = instance;
-      if (locale.languageCode == "ar") {
-        S.isRTL = true;
-      } else {
-        S.isRTL = false;
-      }
+
       return instance;
     });
   }
@@ -202,9 +197,6 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   Future<S> load(Locale locale) => S.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
-  isRTL() {
-    return S.isRTL;
-  }
 
   bool _isSupported(Locale locale) {
     for (var supportedLocale in supportedLocales) {
