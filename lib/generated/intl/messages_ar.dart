@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ادخل بريدك الإلكتروني رجاءً"),
         "forgetPasswordTitle":
             MessageLookupByLibrary.simpleMessage("استعادة كلمة المرور"),
+        "general": MessageLookupByLibrary.simpleMessage("عام"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "msg": MessageLookupByLibrary.simpleMessage(
             "عذراً، لا يمكنك إضافة موظفين في الوقت الحالي. يمكنك إضافة مقررات دراسية."),
@@ -68,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد موظفين مضافيين"),
         "pageTitle": MessageLookupByLibrary.simpleMessage("الدورات الدراسية"),
         "salary": MessageLookupByLibrary.simpleMessage("الراتب"),
+        "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "sorry": MessageLookupByLibrary.simpleMessage("عذراً"),
         "syllabus": MessageLookupByLibrary.simpleMessage("المنهج"),
         "title": MessageLookupByLibrary.simpleMessage("عنوان المقرر"),

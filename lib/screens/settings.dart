@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:math';
+
+import 'package:courses/generated/l10n.dart';
 import 'package:courses/screens/account.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +18,14 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white, //change your color here
         ),
-        title: Text("Settings"),
+        title: Text(l10n.settings),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -28,8 +33,8 @@ class _SettingsState extends State<Settings> {
           padding: EdgeInsets.all(20),
           children: [
             SettingsGroup(
-              title: "General",
-              children: <Widget>[
+              title: l10n.general,
+              children: const <Widget>[
                 Account(),
                 //buildLogout(),
               ],
@@ -41,8 +46,8 @@ class _SettingsState extends State<Settings> {
   }
 }
 
-Widget buildLogout() => SimpleSettingsTile(
-      title: "Logout",
+Widget buildLogout(BuildContext context) => SimpleSettingsTile(
+      title: S.of(context).logout,
       subtitle: "",
       leading: Icon(Icons.exit_to_app),
       onTap: () => {FirebaseAuth.instance.signOut()},

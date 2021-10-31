@@ -32,6 +32,8 @@
     "accountSubTitle": "معلومات الحساب، اللغة، أمن الحساب",
     "accountLanguage": "اللغة",
     "accountSecurity":"أمن الحساب",
-    "accountInfo": "معلومات الحساب"
+    "accountInfo": "معلومات الحساب",
+    "settings": "الإعدادات",
+    "general": "عام"
 
 }

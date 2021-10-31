@@ -31,6 +31,8 @@
     "accountSubTitle": "Info, Language, Security",
     "accountLanguage": "Language",
     "accountSecurity":"Security",
-    "accountInfo": "Account info"
-
+    "accountInfo": "Account info",
+    "settings": "Settings",
+    "general": "General"
+    
 }

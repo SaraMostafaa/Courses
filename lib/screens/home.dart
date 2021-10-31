@@ -47,8 +47,6 @@ class _HomeState extends State<Home> {
       courses.items.add(newCourse);
     });
 
-    storage.setItem('coursesList', courses.toJSONEncodable());
-
     Navigator.of(context).pop();
   }
 
@@ -98,7 +96,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final delegate = S.of(context);
+    final l10n = S.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: FutureBuilder(
@@ -110,7 +108,7 @@ class _HomeState extends State<Home> {
                 drawer: NavDrawer(),
                 appBar: AppBar(
                   backgroundColor: Color.fromRGBO(95, 158, 160, 1.0),
-                  title: Text(delegate.pageTitle),
+                  title: Text(l10n.pageTitle),
                 ),
                 //bottomSheet: BottomNavigation(),
                 body: SingleChildScrollView(
