@@ -25,7 +25,7 @@ class _AccountState extends State<Account> {
           buildAccountInfo(context),
           buildSecurity(context),
           DropDownSettingsTile(
-              title: "Language",
+              title: S.of(context).accountSetting,
               settingKey: "key-language",
               subtitle: "",
               selected: 1,
@@ -45,21 +45,21 @@ class _AccountState extends State<Account> {
                       }
                   }),
         ],
-        title: "Account Settings",
+        title: S.of(context).accountSetting,
       ),
     );
   }
 }
 
 Widget buildSecurity(BuildContext context) => SimpleSettingsTile(
-      title: "Security",
+      title: S.of(context).accountSecurity,
       subtitle: "",
       leading: Icon(Icons.security),
       onTap: () => {},
     );
 
 Widget buildAccountInfo(BuildContext context) => SimpleSettingsTile(
-      title: "Account info",
+      title: S.of(context).accountInfo,
       subtitle: "",
       leading: Icon(Icons.text_snippet),
       onTap: () => {},

@@ -26,6 +26,11 @@
     "courseFormStartDate":"Start Date",
     "courseFormStartDateValidation":"Please enter course start date",
     "courseFormDescription":"Description",
-    "courseFormEdit": "Edit Course"
+    "courseFormEdit": "Edit Course",
+    "accountSetting": "Account Setting",
+    "accountSubTitle": "Info, Language, Security",
+    "accountLanguage": "Language",
+    "accountSecurity":"Security",
+    "accountInfo": "Account info"
 
 }

@@ -339,6 +339,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Account Setting`
+  String get accountSetting {
+    return Intl.message(
+      'Account Setting',
+      name: 'accountSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Info, Language, Security`
+  String get accountSubTitle {
+    return Intl.message(
+      'Info, Language, Security',
+      name: 'accountSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get accountLanguage {
+    return Intl.message(
+      'Language',
+      name: 'accountLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Security`
+  String get accountSecurity {
+    return Intl.message(
+      'Security',
+      name: 'accountSecurity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account info`
+  String get accountInfo {
+    return Intl.message(
+      'Account info',
+      name: 'accountInfo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

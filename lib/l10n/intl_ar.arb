@@ -27,5 +27,11 @@
     "courseFormStartDate":"تاريخ البداية",
     "courseFormStartDateValidation":"قم بإدخال تاريخ بداية المقرر رجاءً",
     "courseFormDescription":"الوصف",
-    "courseFormEdit": "تعديل بيانات المقرر"
+    "courseFormEdit": "تعديل بيانات المقرر",
+    "accountSetting": "إعدادات الحساب",
+    "accountSubTitle": "معلومات الحساب، اللغة، أمن الحساب",
+    "accountLanguage": "اللغة",
+    "accountSecurity":"أمن الحساب",
+    "accountInfo": "معلومات الحساب"
+
 }
