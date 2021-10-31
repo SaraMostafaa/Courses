@@ -13,8 +13,8 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return SimpleSettingsTile(
-      title: "Account Setting",
-      subtitle: "Info, Language, Security",
+      title: S.of(context).accountSetting,
+      subtitle: S.of(context).accountSubTitle,
       // ignore: prefer_const_constructors
       leading: Icon(
         Icons.person,
