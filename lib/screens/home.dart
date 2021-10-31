@@ -135,8 +135,11 @@ class _HomeState extends State<Home> {
                       )),
                 ),
               ),
-              textDirection:
-                  S.isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr);
+              textDirection: ui.TextDirection.rtl
+              //  S.current == "ar"
+              //     ? ui.TextDirection.rtl
+              //     : ui.TextDirection.ltr
+              );
         },
       ),
     );

@@ -24,6 +24,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "age": MessageLookupByLibrary.simpleMessage("العمر"),
         "courses": MessageLookupByLibrary.simpleMessage("الدورات الدراسية"),
         "employees": MessageLookupByLibrary.simpleMessage("الموظفين"),
+        "forgetPasswordEmail":
+            MessageLookupByLibrary.simpleMessage(" البريد الإلكتروني"),
+        "forgetPasswordSend": MessageLookupByLibrary.simpleMessage(
+            "ارسل بريد رلكتروني لتجديد كلمة المرور"),
+        "forgetPasswordSubtitle":
+            MessageLookupByLibrary.simpleMessage("ادخل بريدك الإلكتروني رجاءً"),
+        "forgetPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("استعادة كلمة المرور"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "msg": MessageLookupByLibrary.simpleMessage(
             "عذراً، لا يمكنك إضافة موظفين في الوقت الحالي. يمكنك إضافة مقررات دراسية."),

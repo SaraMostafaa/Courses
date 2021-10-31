@@ -1,4 +1,7 @@
-{
+{    "forgetPasswordTitle": "Reset Password",
+    "forgetPasswordSubtitle": "Please enter your email.",
+    "forgetPasswordEmail": "Email",
+    "forgetPasswordSend": "Send Email",
     "pageTitle": "Courses",
     "salary": "salary",
     "age": "age",
@@ -12,4 +15,6 @@
     "title": " Title",
     "syllabus": "Syllabus",
     "totalHours": "Total hours"
+
+    
 }

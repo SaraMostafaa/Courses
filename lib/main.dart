@@ -60,7 +60,9 @@ class _MyAppState extends State<MyApp> {
               }
             },
           ),
-          textDirection: S.isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr),
+          textDirection: ui.TextDirection.rtl
+          // S.current == "ar" ? ui.TextDirection.rtl : ui.TextDirection.ltr
+          ),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -1,3 +1,4 @@
+import 'package:courses/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 
@@ -9,16 +10,19 @@ class ForgetPasswordScreen extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+  final emailController = TextEditingController();
   passwordReset() async {
     final _auth = FirebaseAuth.instance;
-    await _auth.sendPasswordResetEmail(email: "saramfahmy95@gmail.com");
+    await _auth.sendPasswordResetEmail(email: emailController.text);
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Reset Password"),
+        title: Text(l10n.forgetPasswordTitle),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       backgroundColor: Theme.of(context).primaryColor,
@@ -32,14 +36,20 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Please enter your email.',
+                    Text(
+                      l10n.forgetPasswordSubtitle,
                       style: TextStyle(fontSize: 15),
                     ),
                     TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        icon: Icon(
+                      onSaved: (_) => {
+                        (value) {
+                          emailController.text = value!;
+                        },
+                      },
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: l10n.forgetPasswordEmail,
+                        icon: const Icon(
                           Icons.mail,
                           color: Colors.white,
                         ),
@@ -47,7 +57,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     ),
                     const SizedBox(height: 20),
                     RaisedButton(
-                      child: Text('Send Email'),
+                      child: Text(l10n.forgetPasswordSend),
                       onPressed: () {
                         passwordReset();
                       },

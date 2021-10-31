@@ -50,6 +50,46 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Reset Password`
+  String get forgetPasswordTitle {
+    return Intl.message(
+      'Reset Password',
+      name: 'forgetPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email.`
+  String get forgetPasswordSubtitle {
+    return Intl.message(
+      'Please enter your email.',
+      name: 'forgetPasswordSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get forgetPasswordEmail {
+    return Intl.message(
+      'Email',
+      name: 'forgetPasswordEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Email`
+  String get forgetPasswordSend {
+    return Intl.message(
+      'Send Email',
+      name: 'forgetPasswordSend',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Courses`
   String get pageTitle {
     return Intl.message(

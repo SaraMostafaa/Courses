@@ -24,6 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "age": MessageLookupByLibrary.simpleMessage("age"),
         "courses": MessageLookupByLibrary.simpleMessage("Courses"),
         "employees": MessageLookupByLibrary.simpleMessage("Employees"),
+        "forgetPasswordEmail": MessageLookupByLibrary.simpleMessage("Email"),
+        "forgetPasswordSend":
+            MessageLookupByLibrary.simpleMessage("Send Email"),
+        "forgetPasswordSubtitle":
+            MessageLookupByLibrary.simpleMessage("Please enter your email."),
+        "forgetPasswordTitle":
+            MessageLookupByLibrary.simpleMessage("Reset Password"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "msg": MessageLookupByLibrary.simpleMessage(
             "You can\'t add an employee at the moment, try to add courses."),

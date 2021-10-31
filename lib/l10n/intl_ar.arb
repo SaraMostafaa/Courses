@@ -1,4 +1,8 @@
 {
+    "forgetPasswordTitle": "استعادة كلمة المرور",
+    "forgetPasswordSubtitle": "ادخل بريدك الإلكتروني رجاءً",
+    "forgetPasswordEmail": " البريد الإلكتروني",
+    "forgetPasswordSend": "ارسل بريد رلكتروني لتجديد كلمة المرور",
     "pageTitle": "الدورات الدراسية",
     "salary": "الراتب",
     "age": "العمر",
@@ -12,4 +16,5 @@
     "title": "عنوان المقرر",
     "syllabus": "المنهج",
     "totalHours": "عدد الساعات"
+
 }
