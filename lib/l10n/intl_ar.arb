@@ -15,6 +15,17 @@
     "sorry": "عذراً",
     "title": "عنوان المقرر",
     "syllabus": "المنهج",
-    "totalHours": "عدد الساعات"
-
+    "totalHours": "عدد الساعات",
+    "courseFormTitle":"عنوان المقرر",
+    "courseFormTitleValidation": "قم بإدخال عنوان المقرر رجاءً",
+    "courseFormSyllabus":"المنهج",
+    "courseFormSyllabusValidation":"قم بإدخال منهج المقرر رجاءً",
+    "courseFormAmount":"قيمة المقرر",
+    "courseFormAmountValidation":"قم بإدخال قيمة المقرر رجاءً",
+    "courseFormTotalHours":"عدد الساعات",
+    "courseFormTotalHoursValidation":"قم بإدخال عدد ساعات المقرر رجاءً",
+    "courseFormStartDate":"تاريخ البداية",
+    "courseFormStartDateValidation":"قم بإدخال تاريخ بداية المقرر رجاءً",
+    "courseFormDescription":"الوصف",
+    "courseFormEdit": "تعديل بيانات المقرر"
 }

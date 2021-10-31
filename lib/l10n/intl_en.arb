@@ -1,4 +1,4 @@
-{    "forgetPasswordTitle": "Reset Password",
+{   "forgetPasswordTitle": "Reset Password",
     "forgetPasswordSubtitle": "Please enter your email.",
     "forgetPasswordEmail": "Email",
     "forgetPasswordSend": "Send Email",
@@ -14,7 +14,18 @@
     "sorry": "Sorry",
     "title": " Title",
     "syllabus": "Syllabus",
-    "totalHours": "Total hours"
+    "totalHours": "Total hours",
+    "courseFormTitle":"Title",
+    "courseFormTitleValidation": "Please enter a course title",
+    "courseFormSyllabus":"Syllabus",
+    "courseFormSyllabusValidation":"Please enter course syllabus",
+    "courseFormAmount":"Amount",
+    "courseFormAmountValidation":"Please enter course amount",
+    "courseFormTotalHours":"Total Hours",
+    "courseFormTotalHoursValidation":"Please enter course total hours",
+    "courseFormStartDate":"Start Date",
+    "courseFormStartDateValidation":"Please enter course start date",
+    "courseFormDescription":"Description",
+    "courseFormEdit": "Edit Course"
 
-    
 }

@@ -22,6 +22,26 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "age": MessageLookupByLibrary.simpleMessage("age"),
+        "courseFormAmount": MessageLookupByLibrary.simpleMessage("Amount"),
+        "courseFormAmountValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter course amount"),
+        "courseFormDescription":
+            MessageLookupByLibrary.simpleMessage("Description"),
+        "courseFormEdit": MessageLookupByLibrary.simpleMessage("Edit Course"),
+        "courseFormStartDate":
+            MessageLookupByLibrary.simpleMessage("Start Date"),
+        "courseFormStartDateValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter course start date"),
+        "courseFormSyllabus": MessageLookupByLibrary.simpleMessage("Syllabus"),
+        "courseFormSyllabusValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter course syllabus"),
+        "courseFormTitle": MessageLookupByLibrary.simpleMessage("Title"),
+        "courseFormTitleValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter a course title"),
+        "courseFormTotalHours":
+            MessageLookupByLibrary.simpleMessage("Total Hours"),
+        "courseFormTotalHoursValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter course total hours"),
         "courses": MessageLookupByLibrary.simpleMessage("Courses"),
         "employees": MessageLookupByLibrary.simpleMessage("Employees"),
         "forgetPasswordEmail": MessageLookupByLibrary.simpleMessage("Email"),

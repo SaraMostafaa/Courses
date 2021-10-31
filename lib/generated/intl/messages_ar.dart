@@ -22,6 +22,26 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "age": MessageLookupByLibrary.simpleMessage("العمر"),
+        "courseFormAmount": MessageLookupByLibrary.simpleMessage("قيمة المقرر"),
+        "courseFormAmountValidation":
+            MessageLookupByLibrary.simpleMessage("قم بإدخال قيمة المقرر رجاءً"),
+        "courseFormDescription": MessageLookupByLibrary.simpleMessage("الوصف"),
+        "courseFormEdit":
+            MessageLookupByLibrary.simpleMessage("تعديل بيانات المقرر"),
+        "courseFormStartDate":
+            MessageLookupByLibrary.simpleMessage("تاريخ البداية"),
+        "courseFormStartDateValidation": MessageLookupByLibrary.simpleMessage(
+            "قم بإدخال تاريخ بداية المقرر رجاءً"),
+        "courseFormSyllabus": MessageLookupByLibrary.simpleMessage("المنهج"),
+        "courseFormSyllabusValidation":
+            MessageLookupByLibrary.simpleMessage("قم بإدخال منهج المقرر رجاءً"),
+        "courseFormTitle": MessageLookupByLibrary.simpleMessage("عنوان المقرر"),
+        "courseFormTitleValidation": MessageLookupByLibrary.simpleMessage(
+            "قم بإدخال عنوان المقرر رجاءً"),
+        "courseFormTotalHours":
+            MessageLookupByLibrary.simpleMessage("عدد الساعات"),
+        "courseFormTotalHoursValidation": MessageLookupByLibrary.simpleMessage(
+            "قم بإدخال عدد ساعات المقرر رجاءً"),
         "courses": MessageLookupByLibrary.simpleMessage("الدورات الدراسية"),
         "employees": MessageLookupByLibrary.simpleMessage("الموظفين"),
         "forgetPasswordEmail":

@@ -219,6 +219,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Title`
+  String get courseFormTitle {
+    return Intl.message(
+      'Title',
+      name: 'courseFormTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a course title`
+  String get courseFormTitleValidation {
+    return Intl.message(
+      'Please enter a course title',
+      name: 'courseFormTitleValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Syllabus`
+  String get courseFormSyllabus {
+    return Intl.message(
+      'Syllabus',
+      name: 'courseFormSyllabus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter course syllabus`
+  String get courseFormSyllabusValidation {
+    return Intl.message(
+      'Please enter course syllabus',
+      name: 'courseFormSyllabusValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount`
+  String get courseFormAmount {
+    return Intl.message(
+      'Amount',
+      name: 'courseFormAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter course amount`
+  String get courseFormAmountValidation {
+    return Intl.message(
+      'Please enter course amount',
+      name: 'courseFormAmountValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Hours`
+  String get courseFormTotalHours {
+    return Intl.message(
+      'Total Hours',
+      name: 'courseFormTotalHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter course total hours`
+  String get courseFormTotalHoursValidation {
+    return Intl.message(
+      'Please enter course total hours',
+      name: 'courseFormTotalHoursValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Date`
+  String get courseFormStartDate {
+    return Intl.message(
+      'Start Date',
+      name: 'courseFormStartDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter course start date`
+  String get courseFormStartDateValidation {
+    return Intl.message(
+      'Please enter course start date',
+      name: 'courseFormStartDateValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get courseFormDescription {
+    return Intl.message(
+      'Description',
+      name: 'courseFormDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Course`
+  String get courseFormEdit {
+    return Intl.message(
+      'Edit Course',
+      name: 'courseFormEdit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
