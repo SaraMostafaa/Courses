@@ -28,12 +28,30 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Account Setting"),
         "accountSubTitle":
             MessageLookupByLibrary.simpleMessage("Info, Language, Security"),
+        "addImage": MessageLookupByLibrary.simpleMessage("Add an image"),
         "age": MessageLookupByLibrary.simpleMessage("age"),
+        "authEmail": MessageLookupByLibrary.simpleMessage("Email"),
+        "authEmailValidation": MessageLookupByLibrary.simpleMessage("Email"),
+        "authForgetPassword":
+            MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "authLoginButton": MessageLookupByLibrary.simpleMessage("Login"),
+        "authLoginNow":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "authPassword": MessageLookupByLibrary.simpleMessage("Password"),
+        "authPasswordValidation":
+            MessageLookupByLibrary.simpleMessage("Password"),
+        "authRegister": MessageLookupByLibrary.simpleMessage("Register"),
+        "authRegisterNow": MessageLookupByLibrary.simpleMessage("Register Now"),
+        "authUserName": MessageLookupByLibrary.simpleMessage("UserName"),
+        "authUserNameValidation":
+            MessageLookupByLibrary.simpleMessage("UserName"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
+        "courseFormAdd": MessageLookupByLibrary.simpleMessage("Add Course"),
         "courseFormAmount": MessageLookupByLibrary.simpleMessage("Amount"),
         "courseFormAmountValidation":
             MessageLookupByLibrary.simpleMessage("Please enter course amount"),
         "courseFormDescription":
-            MessageLookupByLibrary.simpleMessage("Description"),
+            MessageLookupByLibrary.simpleMessage("RDescription"),
         "courseFormEdit": MessageLookupByLibrary.simpleMessage("Edit Course"),
         "courseFormStartDate":
             MessageLookupByLibrary.simpleMessage("Start Date"),
@@ -59,14 +77,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Reset Password"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
+        "instructor": MessageLookupByLibrary.simpleMessage("Instructor"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "msg": MessageLookupByLibrary.simpleMessage(
             "You can\'t add an employee at the moment, try to add courses."),
         "noCourses": MessageLookupByLibrary.simpleMessage("No Courses Found."),
         "noEmps": MessageLookupByLibrary.simpleMessage("No Employees Found."),
         "pageTitle": MessageLookupByLibrary.simpleMessage("Courses"),
+        "pickFromGallery":
+            MessageLookupByLibrary.simpleMessage("Pick from gallery"),
+        "pickImage": MessageLookupByLibrary.simpleMessage("Please Pick Image"),
         "salary": MessageLookupByLibrary.simpleMessage("salary"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "sideMenuHome": MessageLookupByLibrary.simpleMessage("Home"),
+        "sideMenuLogout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "sideMenuProfile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "sideMenuSettings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sorry": MessageLookupByLibrary.simpleMessage("Sorry"),
         "syllabus": MessageLookupByLibrary.simpleMessage("Syllabus"),
         "title": MessageLookupByLibrary.simpleMessage(" Title"),

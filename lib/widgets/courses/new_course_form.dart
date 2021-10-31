@@ -105,11 +105,12 @@ class _NewCourseState extends State<NewCourse> {
               children: <Widget>[
                 UserImagePicker(pickedImage),
                 TextFormField(
-                  decoration: InputDecoration(labelText: S.of(context).title),
+                  decoration:
+                      InputDecoration(labelText: S.of(context).courseFormTitle),
                   controller: titleController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Please enter course title";
+                      return S.of(context).courseFormTitleValidation;
                     }
                     return null;
                   },
@@ -120,11 +121,11 @@ class _NewCourseState extends State<NewCourse> {
                   },
                 ),
                 TextFormField(
-                  decoration:
-                      InputDecoration(labelText: S.of(context).syllabus),
+                  decoration: InputDecoration(
+                      labelText: S.of(context).courseFormSyllabus),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Please enter course syllabus";
+                      return S.of(context).courseFormSyllabusValidation;
                     }
                     return null;
                   },
@@ -136,10 +137,11 @@ class _NewCourseState extends State<NewCourse> {
                   },
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: "Amount"),
+                  decoration: InputDecoration(
+                      labelText: S.of(context).courseFormAmount),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Please enter course amount";
+                      return S.of(context).courseFormTotalHoursValidation;
                     }
                     return null;
                   },
@@ -152,11 +154,11 @@ class _NewCourseState extends State<NewCourse> {
                   },
                 ),
                 TextFormField(
-                  decoration:
-                      InputDecoration(labelText: S.of(context).totalHours),
+                  decoration: InputDecoration(
+                      labelText: S.of(context).courseFormTotalHours),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Please enter course totalHours";
+                      return S.of(context).courseFormTotalHoursValidation;
                     }
                     return null;
                   },
@@ -178,7 +180,9 @@ class _NewCourseState extends State<NewCourse> {
                               startDateController, //editing controller of this TextField
                           decoration: InputDecoration(
                               //icon of text field
-                              labelText: "Start Date" //label text of field
+                              labelText: S
+                                  .of(context)
+                                  .courseFormStartDate //label text of field
                               ),
                           readOnly:
                               true, //set it true, so that user will not able to edit text
@@ -205,14 +209,16 @@ class _NewCourseState extends State<NewCourse> {
                                     formattedDate; //set output date to TextField value.
                               });
                             } else {
-                              print("Date is not selected");
+                              print(
+                                  S.of(context).courseFormStartDateValidation);
                             }
                           },
                         ),
                       )),
                 ]),
                 TextFormField(
-                  decoration: InputDecoration(labelText: "Description"),
+                  decoration: InputDecoration(
+                      labelText: S.of(context).courseFormDescription),
                   controller: descriptionController,
                   keyboardType: TextInputType.multiline,
                   onSaved: (_) => {
@@ -224,7 +230,7 @@ class _NewCourseState extends State<NewCourse> {
                 FlatButton(
                     onPressed: submitData,
                     child: Text(
-                      "Add Course",
+                      S.of(context).courseFormAdd,
                       style: TextStyle(color: Theme.of(context).primaryColor),
                     )),
               ],

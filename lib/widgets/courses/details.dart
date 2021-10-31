@@ -1,3 +1,4 @@
+import 'package:courses/generated/l10n.dart';
 import 'package:courses/models/courses.dart';
 import 'package:courses/screens/courses/edit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +14,6 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   updateCourseDetails(Courses newDetails) {
-    print(newDetails.imageURl);
     setState(() {
       widget.course = newDetails;
     });
@@ -130,7 +130,7 @@ class _DetailPageState extends State<DetailPage> {
         child: RaisedButton(
           onPressed: () => {goToEditPage(context)},
           color: Theme.of(context).primaryColor,
-          child: Text("Edit Course Data",
+          child: Text(S.of(context).courseFormEdit,
               style: TextStyle(color: Colors.white, fontSize: 16)),
         ));
     final bottomContent = Container(

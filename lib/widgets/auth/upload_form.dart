@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
+import 'package:courses/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -48,14 +49,14 @@ class _UserImagePickerState extends State<UserImagePicker> {
                 children: <Widget>[
                   ListTile(
                       leading: Icon(Icons.photo_library),
-                      title: Text('Photo Library'),
+                      title: Text(S.of(context).pickFromGallery),
                       onTap: () {
                         _imgFromGallery();
                         Navigator.of(context).pop();
                       }),
                   ListTile(
                     leading: Icon(Icons.photo_camera),
-                    title: Text('Camera'),
+                    title: Text(S.of(context).camera),
                     onTap: () {
                       _imgFromCamera();
                       Navigator.of(context).pop();
@@ -91,7 +92,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
             ),
             onPressed: () => _showPicker(context),
             label: Text(
-              "Add an image",
+              S.of(context).addImage,
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ),

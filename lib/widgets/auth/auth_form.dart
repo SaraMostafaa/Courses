@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:courses/generated/l10n.dart';
 import 'package:courses/screens/auth/forget_password.dart';
 import 'package:flutter/material.dart';
 import '../auth/upload_form.dart';
@@ -48,6 +49,7 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
     return Center(
       child: Card(
         margin: const EdgeInsets.all(20),
@@ -61,7 +63,7 @@ class _AuthFormState extends State<AuthForm> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Instructor",
+                      l10n.instructor,
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
                           fontSize: 20,
@@ -74,12 +76,12 @@ class _AuthFormState extends State<AuthForm> {
                   key: ValueKey("email"),
                   validator: (value) {
                     if (value!.isEmpty || !value.contains("@")) {
-                      return "Please enter a valid email";
+                      return l10n.authEmailValidation;
                     }
                     return null;
                   },
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(labelText: "Email"),
+                  decoration: InputDecoration(labelText: l10n.authEmail),
                   onSaved: (value) {
                     _email = value!;
                   },
@@ -87,10 +89,10 @@ class _AuthFormState extends State<AuthForm> {
                 if (!isLogin)
                   TextFormField(
                     key: ValueKey("userName"),
-                    decoration: const InputDecoration(labelText: "UserName"),
+                    decoration: InputDecoration(labelText: l10n.authUserName),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Please enter a username.";
+                        return l10n.authUserNameValidation;
                       }
                       return null;
                     },
@@ -100,11 +102,11 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                 TextFormField(
                   key: ValueKey("password"),
-                  decoration: const InputDecoration(labelText: "Password"),
+                  decoration: InputDecoration(labelText: l10n.authPassword),
                   obscureText: true,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Please enter a password.";
+                      return l10n.authPasswordValidation;
                     }
                     return null;
                   },
@@ -118,7 +120,7 @@ class _AuthFormState extends State<AuthForm> {
                   RaisedButton(
                     onPressed: _submit,
                     child: Text(
-                      isLogin ? "Login" : "Register",
+                      isLogin ? l10n.authLoginButton : l10n.authRegister,
                     ),
                   ),
                 FlatButton(
@@ -128,7 +130,7 @@ class _AuthFormState extends State<AuthForm> {
                     });
                   }),
                   child: Text(
-                    isLogin ? "Register Now" : "Already have an account?",
+                    isLogin ? l10n.authRegisterNow : l10n.authLoginNow,
                   ),
                   textColor: Theme.of(context).accentColor,
                 ),
@@ -140,7 +142,7 @@ class _AuthFormState extends State<AuthForm> {
                             builder: (context) => ForgetPasswordScreen()));
                   }),
                   child: Text(
-                    "Forget password?",
+                    l10n.authForgetPassword,
                   ),
                   textColor: Theme.of(context).accentColor,
                 )

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:courses/generated/l10n.dart';
 import 'package:courses/screens/home.dart';
 import 'package:courses/screens/settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,7 +37,7 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
               leading: Icon(Icons.home),
-              title: Text('Home'),
+              title: Text(S.of(context).sideMenuHome),
               onTap: () => {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -48,12 +49,12 @@ class NavDrawer extends StatelessWidget {
                   }),
           ListTile(
             leading: Icon(Icons.verified_user),
-            title: Text('Profile'),
+            title: Text(S.of(context).sideMenuProfile),
             onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
               leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              title: Text(S.of(context).sideMenuSettings),
               onTap: () => {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -65,7 +66,7 @@ class NavDrawer extends StatelessWidget {
                   }),
           ListTile(
             leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
+            title: Text(S.of(context).sideMenuLogout),
             onTap: () => {FirebaseAuth.instance.signOut()},
           ),
         ],

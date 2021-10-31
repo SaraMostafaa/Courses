@@ -28,7 +28,27 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إعدادات الحساب"),
         "accountSubTitle": MessageLookupByLibrary.simpleMessage(
             "معلومات الحساب، اللغة، أمن الحساب"),
+        "addImage": MessageLookupByLibrary.simpleMessage("اضف صورة"),
         "age": MessageLookupByLibrary.simpleMessage("العمر"),
+        "authEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "authEmailValidation": MessageLookupByLibrary.simpleMessage(
+            "قم  بإدخال البريد الإلكتروني رجاءً"),
+        "authForgetPassword":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
+        "authLoginButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "authLoginNow":
+            MessageLookupByLibrary.simpleMessage("أملك حساب بالفعل"),
+        "authPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "authPasswordValidation":
+            MessageLookupByLibrary.simpleMessage("قم بإدخال كلمة المرور رجاءً"),
+        "authRegister": MessageLookupByLibrary.simpleMessage("حساب جديد"),
+        "authRegisterNow":
+            MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+        "authUserName": MessageLookupByLibrary.simpleMessage("اسم  المستخدم"),
+        "authUserNameValidation": MessageLookupByLibrary.simpleMessage(
+            "قم بإدخال اسم المستخدم رجاءً"),
+        "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
+        "courseFormAdd": MessageLookupByLibrary.simpleMessage("إضافة المقرر"),
         "courseFormAmount": MessageLookupByLibrary.simpleMessage("قيمة المقرر"),
         "courseFormAmountValidation":
             MessageLookupByLibrary.simpleMessage("قم بإدخال قيمة المقرر رجاءً"),
@@ -60,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPasswordTitle":
             MessageLookupByLibrary.simpleMessage("استعادة كلمة المرور"),
         "general": MessageLookupByLibrary.simpleMessage("عام"),
+        "instructor": MessageLookupByLibrary.simpleMessage("المعلم"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "msg": MessageLookupByLibrary.simpleMessage(
             "عذراً، لا يمكنك إضافة موظفين في الوقت الحالي. يمكنك إضافة مقررات دراسية."),
@@ -68,8 +89,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "noEmps":
             MessageLookupByLibrary.simpleMessage("لا يوجد موظفين مضافيين"),
         "pageTitle": MessageLookupByLibrary.simpleMessage("الدورات الدراسية"),
+        "pickFromGallery":
+            MessageLookupByLibrary.simpleMessage("اختر من المعرض"),
+        "pickImage":
+            MessageLookupByLibrary.simpleMessage("قم باختيار صورة رجاءً"),
         "salary": MessageLookupByLibrary.simpleMessage("الراتب"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "sideMenuHome": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "sideMenuLogout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "sideMenuProfile":
+            MessageLookupByLibrary.simpleMessage("الصفحة الشخصية"),
+        "sideMenuSettings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "sorry": MessageLookupByLibrary.simpleMessage("عذراً"),
         "syllabus": MessageLookupByLibrary.simpleMessage("المنهج"),
         "title": MessageLookupByLibrary.simpleMessage("عنوان المقرر"),

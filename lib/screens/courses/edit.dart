@@ -234,7 +234,6 @@ class _EditCourseState extends State<EditCourse> {
                                               lastDate: DateTime(2101));
 
                                       if (pickedDate != null) {
-                                        print(pickedDate);
                                         setState(() {
                                           startDate = pickedDate;
                                           startDateController.text =

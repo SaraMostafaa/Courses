@@ -320,10 +320,10 @@ class S {
     );
   }
 
-  /// `Description`
+  /// `RDescription`
   String get courseFormDescription {
     return Intl.message(
-      'Description',
+      'RDescription',
       name: 'courseFormDescription',
       desc: '',
       args: [],
@@ -335,6 +335,16 @@ class S {
     return Intl.message(
       'Edit Course',
       name: 'courseFormEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Course`
+  String get courseFormAdd {
+    return Intl.message(
+      'Add Course',
+      name: 'courseFormAdd',
       desc: '',
       args: [],
     );
@@ -405,6 +415,206 @@ class S {
     return Intl.message(
       'General',
       name: 'general',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Pick Image`
+  String get pickImage {
+    return Intl.message(
+      'Please Pick Image',
+      name: 'pickImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instructor`
+  String get instructor {
+    return Intl.message(
+      'Instructor',
+      name: 'instructor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get authEmail {
+    return Intl.message(
+      'Email',
+      name: 'authEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get authEmailValidation {
+    return Intl.message(
+      'Email',
+      name: 'authEmailValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UserName`
+  String get authUserName {
+    return Intl.message(
+      'UserName',
+      name: 'authUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UserName`
+  String get authUserNameValidation {
+    return Intl.message(
+      'UserName',
+      name: 'authUserNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get authPassword {
+    return Intl.message(
+      'Password',
+      name: 'authPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get authPasswordValidation {
+    return Intl.message(
+      'Password',
+      name: 'authPasswordValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get authLoginButton {
+    return Intl.message(
+      'Login',
+      name: 'authLoginButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get authRegister {
+    return Intl.message(
+      'Register',
+      name: 'authRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register Now`
+  String get authRegisterNow {
+    return Intl.message(
+      'Register Now',
+      name: 'authRegisterNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get authLoginNow {
+    return Intl.message(
+      'Already have an account?',
+      name: 'authLoginNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget Password?`
+  String get authForgetPassword {
+    return Intl.message(
+      'Forget Password?',
+      name: 'authForgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick from gallery`
+  String get pickFromGallery {
+    return Intl.message(
+      'Pick from gallery',
+      name: 'pickFromGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add an image`
+  String get addImage {
+    return Intl.message(
+      'Add an image',
+      name: 'addImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get sideMenuHome {
+    return Intl.message(
+      'Home',
+      name: 'sideMenuHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get sideMenuProfile {
+    return Intl.message(
+      'Profile',
+      name: 'sideMenuProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get sideMenuSettings {
+    return Intl.message(
+      'Settings',
+      name: 'sideMenuSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get sideMenuLogout {
+    return Intl.message(
+      'Logout',
+      name: 'sideMenuLogout',
       desc: '',
       args: [],
     );
